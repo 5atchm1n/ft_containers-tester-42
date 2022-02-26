@@ -1,71 +1,116 @@
+### MAKEFILE FOR CONTAINERS
+
+## VARIABLES
+# Makefile Rules
 
 NAME = ft_containers
 
 MAP_TEST = map_test
 
+VEC_TEST = vector_test
+
+TEST_VECTOR = test_vector
+
+# Makefile recipe specific Rules
+
 VEC_FT = ft_vector
 VEC_STD = std_vector
+OBJDIR = objs
+MKDIR_P = mkdir -p
+OUT_DIR = bin/log
 
-SRC = _containers_test/main3.cpp
-
-_MAP_TEST = _containers_test/_test-map.cpp
-_VEC_TEST = _containers_test/_test-vector.cpp
+# Compiler directives
 
 CC = clang++
 CPPSTD = -std=c++98
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 
-MEM = -fsanitize=address -g3 
-#DEBUG = -fstandalone-debug
+# Debug and Memory
 
+MEM = -fsanitize=address -g3 
+DEBUG = -fstandalone-debug
+
+## SOURCE FILES
+# Default
+SRC = main3.cpp
+# Map
+_MAP_TEST = _containers_test/_test-map.cpp
+# Vector
+_VEC_TEST = _containers_test/_test-vector.cpp
+# END
+
+## INCLUDE FILES
+# Global include
 INC = -I./containers
 
-OBJDIR = objs
-
+## DEPENDECIES recipe
 DEPS = ${OBJS:.o=.d}
 
+## OBJS DIR recipe
 OBJS = $(addprefix ${OBJDIR}/, ${SRC:.cpp=.o})
 _VEC_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_VEC_TEST:.cpp=.o})
 _MAP_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_MAP_TEST:.cpp=.o})
 
-all : ${NAME}
+# GLOBAL MAKE ALL
 
+all : ${NAME}
+# default recipe
 ${NAME} : ${OBJS}
 	${CC} ${CFLAGS} ${INC} ${MEM} ${CPPSTD} ${OBJS} -o $@
 
+# object file recipe
 ${OBJDIR}/%.o:%.cpp
-	@mkdir -p ${@D}
+	@${MKDIR_P} ${@D}
 	${CC} ${CFLAGS} ${_TEST} ${INC} $(DEBUG) ${MEM} ${CPPSTD} -c $< -o $@
+
+# END GLOBAL ALL
+
+# TEST MAP
+# generate map exectutable
 
 ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
 	${CC} ${CFLAGS} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
 
-${VEC_STD} : _TEST= -D _NAMESPACE=std
+# VECTOR
+# create make calls for ft and std
 
-${VEC_STD} : ${VEC_FT}
+${VEC_FT} : ${VEC_TEST}
 
-${VEC_FT} : tclean ${_VEC_TEST_OBJS}
+${VEC_STD} : _TEST=-D _NAMESPACE=std
+
+${VEC_STD} : ${VEC_TEST}
+
+# VECTOR
+# generate vector exectutable
+
+${VEC_TEST} : ${_VEC_TEST_OBJS}
+	@${MKDIR_P} ${OUT_DIR} 
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
-vector_test : 
-	mkdir -p bin/logs
-	-make -s ${VEC_STD} && mv ft_vector bin/std_vector
-	-make -s ${VEC_FT} && mv ft_vector bin/ft_vector
-	-./bin/${VEC_STD} > bin/logs/std.out
-	-./bin/${VEC_FT} > bin/logs/ft.out
-	-diff -u bin/logs/std.out bin/logs/ft.out > bin/logs/diff.log	
+# Run test against stl and generate diff
 
+${TEST_VECTOR} : tclean
+	make -s ${VEC_STD} && mv ${VEC_TEST} ./bin/${VEC_STD}
+	make -s ${VEC_FT} && mv ${VEC_TEST} ./bin/${VEC_FT}
+	-./bin/${VEC_STD} > ${OUT_DIR}/std.out
+	-./bin/${VEC_FT} > ${OUT_DIR}/ft.out
+	-diff -u ${OUT_DIR}/std.out ${OUT_DIR}/ft.out > ${OUT_DIR}/diff.log
+
+# VECTOR END
+
+# COMMON RULES
 re : fclean all
 
 clean :
 	rm -rf ${OBJDIR}
 
 fclean : clean
-	rm -f ${NAME} ${VEC_FT} ${VEC_STD}
+	rm -f ${NAME}
 
 tclean : fclean
 	rm -rf bin
 
-.PHONY : all clean fclean test_vector
+.PHONY : all clean fclean tclean
 
+# ADD DEPENDECIES
 -include ${DEPS}
