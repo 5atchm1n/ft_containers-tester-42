@@ -6,7 +6,7 @@ MAP_TEST = map_test
 VEC_FT = ft_vector
 VEC_STD = std_vector
 
-SRC = main3.cpp \
+SRC = _containers_test/main3.cpp
 
 _MAP_TEST = _containers_test/_test-map.cpp
 _VEC_TEST = _containers_test/_test-vector.cpp
@@ -30,6 +30,13 @@ _MAP_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_MAP_TEST:.cpp=.o})
 
 all : ${NAME}
 
+${NAME} : ${OBJS}
+	${CC} ${CFLAGS} ${INC} ${MEM} ${CPPSTD} ${OBJS} -o $@
+
+${OBJDIR}/%.o:%.cpp
+	@mkdir -p ${@D}
+	${CC} ${CFLAGS} ${_TEST} ${INC} $(DEBUG) ${MEM} ${CPPSTD} -c $< -o $@
+
 ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
 	${CC} ${CFLAGS} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
 
@@ -41,16 +48,11 @@ ${VEC_FT} : fclean ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
 vector_test : 
-	-make -s ${VEC_STD} && ./vector_test > std.out
-	-make -s ${VEC_TEST} && ./vector_test > ft.out
+	-make -s ${VEC_STD} && ./${VEC_STD} > std.out
+	-make -s ${VEC_FT} && ./${VEC_FT} > ft.out
 	-diff -u std.out ft.out > diff.log
 
-${NAME} : ${OBJS}
-	${CC} ${CFLAGS} ${INC} ${MEM} ${CPPSTD} ${OBJS} -o $@
 
-${OBJDIR}/%.o:%.cpp
-	@mkdir -p ${@D}
-	${CC} ${CFLAGS} ${_TEST} ${INC} $(DEBUG) ${MEM} ${CPPSTD} -c $< -o $@
 
 re : fclean all
 
