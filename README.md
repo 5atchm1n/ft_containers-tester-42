@@ -13,7 +13,9 @@ run ```make std_vector``` to create std::vector executable
 
 run ```make vector_test``` to run diff on output files
 
-check out diff.log for output
+check /bin for executables and log files
+
+check out diff.log for diff output
 
 #### NOTE
 all tests are run with ```$DEBUG``` and ```$MEM``` flags
