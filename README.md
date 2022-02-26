@@ -17,3 +17,6 @@ check out diff.log for output
 
 #### NOTE
 all tests are run with ```$DEBUG``` and ```$MEM``` flags
+
+#### NOTE - to editors
+create a branch and pull request to merge into master !
