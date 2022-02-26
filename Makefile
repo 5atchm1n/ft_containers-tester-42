@@ -90,7 +90,7 @@ ${VEC_TEST} : ${_VEC_TEST_OBJS}
 # Run test against stl and generate diff
 
 ${TEST_VECTOR} : tclean
-	make -s ${VEC_STD} && mv ${VEC_TEST} ./bin/${VEC_STD}
+	make -s ${VEC_STD} && mv ${VEC_TEST} ./bin/${VEC_STD} && make clean
 	make -s ${VEC_FT} && mv ${VEC_TEST} ./bin/${VEC_FT}
 	-./bin/${VEC_STD} > ${OUT_DIR}/std.out
 	-./bin/${VEC_FT} > ${OUT_DIR}/ft.out
