@@ -11,7 +11,7 @@ run ```make ft_vector``` to craete ft::vector executable
 
 run ```make std::vector``` to create std::vector executable
 
-run ```make test_vector``` to run diff on output files
+run ```make vector_test``` to run diff on output files
 
 check out diff.log for output
 

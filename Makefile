@@ -2,8 +2,9 @@
 NAME = ft_containers
 
 MAP_TEST = map_test
-VEC_TEST = vector_test
-VEC_STD = vector_std
+
+VEC_FT = ft_vector
+VEC_STD = std_vector
 
 SRC = main3.cpp \
 
@@ -34,12 +35,12 @@ ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
 
 ${VEC_STD} : _TEST= -D _NAMESPACE=std
 
-${VEC_STD} : ${VEC_TEST}
+${VEC_STD} : ${VEC_FT}
 
-${VEC_TEST} : fclean ${_VEC_TEST_OBJS}
+${VEC_FT} : fclean ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
-vector_diff : 
+vector_test : 
 	-make -s ${VEC_STD} && ./vector_test > std.out
 	-make -s ${VEC_TEST} && ./vector_test > ft.out
 	-diff -u std.out ft.out > diff.log
@@ -57,7 +58,10 @@ clean :
 	rm -rf ${OBJDIR}
 
 fclean : clean
-	rm -f ${NAME} ${RBT_TEST} ${MAP_TEST}
+	rm -f ${NAME} ${VEC_FT} ${VEC_STD}
+
+tclean : fclean
+	rm -f std.out ft.out diff.log
 
 .PHONY : all clean fclean vector_diff
 
