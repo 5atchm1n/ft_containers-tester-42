@@ -6,17 +6,19 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 03:34:44 by sshakya           #+#    #+#             */
-/*   Updated: 2022/02/26 20:20:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/02/26 23:48:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
 #include <string>
 #include <vector>
 #include <iterator>
 #include <cstdlib>
 #include <climits>
 #include <iostream>
+
+// VECTOR HEADER FILE
+#include "vector.hpp"
 
 #define _MAX_TEST_SIZE 20
 #define _NTESTS 10
@@ -28,12 +30,17 @@
 namespace _test
 {
 
+/**
+ * @brief Template overload RDM_VAL
+ */
     template <typename _Type>
     _Type rdm_val()
     {
         return (_Type());
     }
-
+/**
+ * @brief Generate a random string
+ */
     template <>
     std::string rdm_val<std::string>()
     {
@@ -59,13 +66,19 @@ namespace _test
             };
         return (std::string(default_val[std::rand() % 17]));
     }
-
+/**
+ * @brief Generate a random UINT
+ * 
+ */
     template <>
     int rdm_val<int>()
     {
         return (int(std::rand() % UINT_MAX));
     }
 
+/**
+ * @brief PRINT VECTOR
+ */
     template <typename _vector>
     void test_print(const _vector &v)
     {
@@ -85,6 +98,9 @@ namespace _test
                 std::cout << *it << std::endl;
         }
     }
+/**
+ * @brief CONSTRUCTORS
+ */
     template <typename _vector>
     void test_constructors(_vector &x, _vector &y)
     {
@@ -96,6 +112,9 @@ namespace _test
         _vector z(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
         test_print(x);
     }
+/**
+ * @brief TEST VECTOR ASSIGN 
+ */
     template <typename _vector>
     void test_assign(_vector &X, _vector &Y)
     {
@@ -107,29 +126,59 @@ namespace _test
         test_print(X);
         test_print(Y);
     }
-
+/**
+ * @brief TEST COPY CONSTRUCTOR
+ */
     template <typename _vector>
     void test_copy(_vector x, _vector y)
     {
         std::cout << "test copy constructor" << std::endl;
         _vector z(x);
+        _vector w(y);
         test_print(x);
-        test_print(y);
-        test_print(z);
-        std::cout << "test assignment operator" << std::endl;
-        z = x;
-        test_print(x);
-        test_print(z);
-        std::cout << "test mixed" << std::endl;
-        x = z;
-        x = y;
-        y = z;
-        test_print(x);
-        test_print(y);
-        test_print(z);
-        z = _vector(x);
+        test_print(w);
         test_print(z);
     }
+
+/**
+ * @brief TEST OPERATOR =
+ */
+    template <typename _vector>
+    void test_assign_op(_vector x, _vector y)
+    {
+        std::cout << "test assignment operator" << std::endl;
+        _vector Z(x);
+        Z = x;
+        test_print(x);
+        test_print(y);
+        test_print(Z);
+        x = _vector(Z);
+        test_print(x);
+    }
+
+/**
+ * @brief TEST MIXED OP = and COPY
+ */
+    template <typename _vector>
+    void test_mixed_assign_copy(_vector x, _vector y)
+    {
+        std::cout << "test mixed" << std::endl;
+        _vector Z(x);
+        Z = x;
+        test_print(Z);
+        x = Z;
+        x = y;
+        y = Z;
+        test_print(x);
+        test_print(y);
+        test_print(Z);
+    }
+
+
+/**
+ * @brief TEST INSERT 
+ */
+
     template <typename _vector>
     void test_insert(_vector &x, _vector &y)
     {
@@ -182,6 +231,9 @@ namespace _test
     }
 
 }
+
+#define _TEST 8 
+
 template <class _vector>
 void test_vector(int rdm_seed)
 {
@@ -192,6 +244,8 @@ void test_vector(int rdm_seed)
             &_test::test_assign,
             &_test::test_copy,
             &_test::test_insert,
+            &_test::test_assign_op,
+            &_test::test_mixed_assign_copy,
             &_test::test_push,
             &_test::test_pop};
 
@@ -200,7 +254,7 @@ void test_vector(int rdm_seed)
     _vector Z;
     for (int i = 0; i < _NTESTS; i++)
     {
-        int rand = std::rand() % 6;
+        int rand = std::rand() % _TEST;
         if (std::rand() % 2)
             _testArray[rand](X, Y);
         else
