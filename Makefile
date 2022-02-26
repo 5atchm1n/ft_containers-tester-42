@@ -44,13 +44,16 @@ ${VEC_STD} : _TEST= -D _NAMESPACE=std
 
 ${VEC_STD} : ${VEC_FT}
 
-${VEC_FT} : fclean ${_VEC_TEST_OBJS}
+${VEC_FT} : tclean ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
 vector_test : 
-	-make -s ${VEC_STD} && ./${VEC_STD} > std.out
-	-make -s ${VEC_FT} && ./${VEC_FT} > ft.out
-	-diff -u std.out ft.out > diff.log
+	mkdir -p bin/logs
+	-make -s ${VEC_STD} && mv ft_vector bin/std_vector
+	-make -s ${VEC_FT} && mv ft_vector bin/ft_vector
+	-./bin/${VEC_STD} > bin/logs/std.out
+	-./bin/${VEC_FT} > bin/logs/ft.out
+	-diff -u bin/logs/std.out bin/logs/ft.out > bin/logs/diff.log	
 
 re : fclean all
 
@@ -61,8 +64,8 @@ fclean : clean
 	rm -f ${NAME} ${VEC_FT} ${VEC_STD}
 
 tclean : fclean
-	rm -f std.out ft.out diff.log
+	rm -rf bin
 
-.PHONY : all clean fclean vector_diff
+.PHONY : all clean fclean test_vector
 
 -include ${DEPS}
