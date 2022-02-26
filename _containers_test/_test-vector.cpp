@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 03:34:44 by sshakya           #+#    #+#             */
-/*   Updated: 2022/02/26 23:48:59 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/02/26 23:58:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "vector.hpp"
 
 #define _MAX_TEST_SIZE 20
-#define _NTESTS 10
+#define _NTESTS 100
 
 #ifndef _NAMESPACE
 #define _NAMESPACE ft
