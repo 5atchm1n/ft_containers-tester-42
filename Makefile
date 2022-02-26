@@ -52,8 +52,6 @@ vector_test :
 	-make -s ${VEC_FT} && ./${VEC_FT} > ft.out
 	-diff -u std.out ft.out > diff.log
 
-
-
 re : fclean all
 
 clean :
