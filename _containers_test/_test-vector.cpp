@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 03:34:44 by sshakya           #+#    #+#             */
-/*   Updated: 2022/02/27 07:11:46 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/02/27 16:07:48 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iterator>
 #include <cstdlib>
 #include <climits>
+#include <iostream>
 
 #define _MAX_TEST_SIZE 20
 #define _NTESTS 50
