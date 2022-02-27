@@ -41,7 +41,7 @@ _VEC_TEST = _containers_test/_test-vector.cpp
 
 ## INCLUDE FILES
 # Global include
-INC = -I./containers
+INC = -I ..
 
 ## DEPENDECIES recipe
 DEPS = ${OBJS:.o=.d}
