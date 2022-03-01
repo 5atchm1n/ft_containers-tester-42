@@ -7,18 +7,25 @@ Read the makefile !
 ### BASIC
 Modify the ```$INC``` variable in Makefile to point to your containers
 
-run ```make ft_vector``` to craete ft::vector executable
+#### BASIC COMMANDS
 
-run ```make std_vector``` to create std::vector executable
+```make ft_vector```    to create ft::vector executable
 
-run ```make vector_test``` to run diff on output files
+```make std_vector```   to create std::vector executable
 
-check /bin for executables and log files
+```make vector_test```  run test and output to /log
 
-check out diff.log for diff output
+```make tclean```       clean test files
+
+```make lclean```       clean log files
+
+```make fclean```       clean all
+
+check log folder for output
 
 #### NOTE
 all tests are run with ```$DEBUG``` and ```$MEM``` flags
+if any of the tests fail Make will throw an error but still proceed
 
 #### NOTE - to editors
 create a branch and pull request to merge into master !
