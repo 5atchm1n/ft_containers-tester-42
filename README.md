@@ -13,7 +13,7 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 
 ```make std_vector```   to create std::vector executable
 
-```make vector_test```  run test and output to /log
+```make test_vector```  run test and output to /log
 
 ```make tclean```       clean test files
 
