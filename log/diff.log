@@ -1,0 +1,23 @@
+--- log/std.out	2022-03-01 01:29:14.620588461 +0100
++++ log/ft.out	2022-03-01 01:29:15.208595589 +0100
+@@ -32,19 +32,13 @@
+ empty : 1
+ size : 0
+ empty : 0
+-size : 4
++size : 1
+ front : Pellentesque eget risus efficitur
+ back : Pellentesque eget risus efficitur
+ content : 
+ Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+ reverse content : 
+ Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+-Pellentesque eget risus efficitur
+ MAIN TEST : 4
+ TEST : 4
+ test assign
