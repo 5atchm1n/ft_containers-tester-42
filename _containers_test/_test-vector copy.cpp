@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _test-vector.cpp                                   :+:      :+:    :+:   */
+/*   _test-vector copy.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 03:34:44 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/01 01:25:14 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/01 01:29:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <iterator>
 #include <cstdlib>
 #include <climits>
-#include <iostream>
 
 #define _MAX_TEST_SIZE 20
+#define _NTESTS 50
 
 #ifndef _NAMESPACE
 #define _NAMESPACE ft
@@ -29,6 +29,28 @@ static int main_test_no = 0;
 
 namespace _test
 {
+    /**
+     * @brief PRINT VECTOR
+     */
+    template <typename _vector>
+    void test_print(const _vector &v)
+    {
+        std::cout << "empty : " << v.empty() << std::endl;
+        std::cout << "size : " << v.size() << std::endl;
+        // std::cout << "capacity : " << v.capacity() << std::endl;
+        // std::cout << "max size : " << v.max_size() << std::endl;
+        if (!v.empty())
+        {
+            std::cout << "front : " << v.front() << std::endl;
+            std::cout << "back : " << v.back() << std::endl;
+            std::cout << "content : " << std::endl;
+            for (typename _vector::const_iterator it = v.begin(); it != v.end(); it++)
+                std::cout << *it << std::endl;
+            std::cout << "reverse content : " << std::endl;
+            for (typename _vector::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++)
+                std::cout << *it << std::endl;
+        }
+    }
 
     /**
      * @brief Template overload RDM_VAL
@@ -66,6 +88,7 @@ namespace _test
                 "eget pretium velit vehicula et."};
         return (std::string(default_val[std::rand() % 17]));
     }
+
     /**
      * @brief Generate a random UINT
      *
@@ -76,28 +99,11 @@ namespace _test
         return (int(std::rand() % UINT_MAX));
     }
 
-    /**
-     * @brief PRINT VECTOR
+    /********
+     * @brief   TEST SUITE FOR VECTOR
+     * @tparam _vector  vector class
      */
-    template <typename _vector>
-    void test_print(const _vector &v)
-    {
-        std::cout << "empty : " << v.empty() << std::endl;
-        std::cout << "size : " << v.size() << std::endl;
-        // std::cout << "capacity : " << v.capacity() << std::endl;
-        // std::cout << "max size : " << v.max_size() << std::endl;
-        if (!v.empty())
-        {
-            std::cout << "front : " << v.front() << std::endl;
-            std::cout << "back : " << v.back() << std::endl;
-            std::cout << "content : " << std::endl;
-            for (typename _vector::const_iterator it = v.begin(); it != v.end(); it++)
-                std::cout << *it << std::endl;
-            std::cout << "reverse content : " << std::endl;
-            for (typename _vector::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++)
-                std::cout << *it << std::endl;
-        }
-    }
+
     /**
      * @brief CONSTRUCTORS
      */
@@ -245,9 +251,16 @@ namespace _test
     }
 
 }
+#define _DEFAULT_CONSTRUCTOR 0
+#define _COPY_CONSTRUCTOR 1
+#define _ASSIGNMENT_OP 2
+#define _MIXED_0_3 3
+#define _INSERT 4
+#define _ASSIGN 5
+#define _PUSH 6
+#define _POP 7
 
 #define _TEST 8
-#define _NTESTS 50
 
 template <class _vector>
 void test_vector(int rdm_seed)
@@ -266,17 +279,63 @@ void test_vector(int rdm_seed)
 
     _vector X;
     _vector Y;
-    _vector Z;
     for (int i = 0; i < _NTESTS; i++)
     {
         std::cout << "MAIN TEST : " << main_test_no++ << std::endl;
-        int rand = std::rand() % _TEST;
-        if (std::rand() % 2)
-            _testArray[rand](X, Y);
-        else
-            _testArray[rand](Y, X);
-        _test::test_print(X);
-        _test::test_print(Y);
+        switch (std::rand() % _TEST)
+        {
+        case (_DEFAULT_CONSTRUCTOR):
+            if (std::rand() % 2)
+                _testArray[_DEFAULT_CONSTRUCTOR](X, Y);
+            else
+                _testArray[_DEFAULT_CONSTRUCTOR](Y, X);
+            //break;
+        case (_COPY_CONSTRUCTOR):
+            if (std::rand() % 2)
+                _testArray[_COPY_CONSTRUCTOR](X, Y);
+            else
+                _testArray[_COPY_CONSTRUCTOR](Y, X);
+            //break;
+        case (_ASSIGNMENT_OP):
+            if (std::rand() % 2)
+                _testArray[_ASSIGNMENT_OP](X, Y);
+            else
+                _testArray[_ASSIGNMENT_OP](Y, X);
+            //break;
+        case (_MIXED_0_3) :
+            if (std::rand() % 2)
+                _testArray[_MIXED_0_3](X, Y);
+            else
+            _testArray[_MIXED_0_3](Y, X);
+            //break;
+        case (_INSERT):
+            if (std::rand() % 2)
+                _testArray[_INSERT](X, Y);
+            else
+                _testArray[_INSERT](Y, X);
+            //break;
+        case (_ASSIGN):
+            if (std::rand() % 2)
+                _testArray[_ASSIGN](X, Y);
+            else
+                _testArray[_ASSIGN](Y, X);
+            //break;
+        case (_PUSH):
+            if (std::rand() % 2)
+                _testArray[_PUSH](X, Y);
+            else
+                _testArray[_PUSH](Y, X);
+            //break;
+        case (_POP):
+            if (std::rand() % 2)
+                _testArray[_POP](X, Y);
+            else
+                _testArray[_POP](Y, X);
+            //break;
+        default:
+            _test::test_print(X);
+            _test::test_print(Y);
+        }
     }
 }
 

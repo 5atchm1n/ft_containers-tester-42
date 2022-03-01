@@ -1,0 +1,9 @@
+
+=================================================================
+==41735==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 800 byte(s) in 31 object(s) allocated from:
+    #0 0x4c435d in operator new(unsigned long) (/home/sshakya/Documents/Projects/testers/containers_test/ft_vector+0x4c435d)
+    #1 0x7f11c842fbcc in void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (/lib/x86_64-linux-gnu/libstdc++.so.6+0x145bcc)
+
+SUMMARY: AddressSanitizer: 800 byte(s) leaked in 31 allocation(s).
