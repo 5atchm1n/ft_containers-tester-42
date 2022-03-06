@@ -10,8 +10,6 @@ INC = -I./containers
 
 NAME = ft_containers
 
-RBT_TEST = rbt_test
-
 MAP_TEST = map_test
 
 VEC_TEST = vector_test
@@ -51,8 +49,6 @@ RESET="\033[m"
 ## SOURCE FILES
 # Default
 SRC = _containers_test/main3.cpp
-# Reb Black Tree
-_RBT_TEST = _containers_test/_test-rbt.cpp
 # Map
 _MAP_TEST = _containers_test/_test-map.cpp
 # Vector
@@ -103,39 +99,41 @@ ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
 # create make calls for ft and std
 
 ${VEC_FT} : ${VEC_TEST}
+	mv ${VEC_TEST} ${VEC_FT}
 
 ${VEC_STD} : _TEST=-D_NAMESPACE=std
 
 ${VEC_STD} : ${VEC_TEST}
+	mv ${VEC_TEST} ${VEC_STD}
 
 # VECTOR
 # generate vector exectutable
 
-${VEC_TEST} : clean ${_VEC_TEST_OBJS}
+${VEC_TEST} : ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
 LOG_DIR = log
 BIN_DIR = bin
 TEST_VECTOR = test_vector
 
-${TEST_VECTOR} : tclean
+${TEST_VECTOR} :
 	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
-	@echo ${CYAN} "Make std_vector :\t" ${RESET}
-	@make -s ${VEC_STD}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo -n ${CYAN} "Make std_vector :\t" ${RESET}
+	@make  ${VEC_STD}
+	@echo ${GREEN} "[ OK ]" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
-	@mv ${VEC_TEST} ${VEC_STD}
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
 	@-./${VEC_STD} > ${LOG_DIR}/std.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
-	@make -s ${VEC_FT}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@mv ${VEC_TEST} ${VEC_FT}
+	@echo -n ${CYAN} "Make ft_vector:\t" ${RESET}
+	@make  ${VEC_FT}
+	@echo ${GREEN} "[ OK ]" ${RESET}
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${VEC_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo -n ${YELLOW} "checking diff\t\t" ${RESET}
 	@-diff -u ${LOG_DIR}/std.out ${LOG_DIR}/ft.out > ${LOG_DIR}/diff.log
+	@echo ${GREEN} "[ DONE ]" ${RESET}
 	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
 
 # VECTOR END
