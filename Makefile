@@ -109,7 +109,7 @@ ${VEC_STD} : ${VEC_TEST}
 # VECTOR
 # generate vector exectutable
 
-${VEC_TEST} : ${_VEC_TEST_OBJS}
+${VEC_TEST} : clean ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
 LOG_DIR = log
@@ -118,15 +118,15 @@ TEST_VECTOR = test_vector
 
 ${TEST_VECTOR} :
 	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
-	@echo -n ${CYAN} "Make std_vector :\t" ${RESET}
-	@make  ${VEC_STD}
+	@echo ${CYAN} "Make std_vector :\t" ${RESET}
+	@make -s ${VEC_STD}
 	@echo ${GREEN} "[ OK ]" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
 	@-./${VEC_STD} > ${LOG_DIR}/std.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo -n ${CYAN} "Make ft_vector:\t" ${RESET}
-	@make  ${VEC_FT}
+	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
+	@make -s ${VEC_FT}
 	@echo ${GREEN} "[ OK ]" ${RESET}
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${VEC_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
