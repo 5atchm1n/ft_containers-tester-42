@@ -18,6 +18,10 @@ VEC_FT = ft_vector
 
 VEC_STD = std_vector
 
+MAP_FT = ft_map
+
+MAP_STD = std_map
+
 # Compiler directives
 
 CC = clang++
@@ -88,11 +92,20 @@ ${OBJDIR}/%.o:%.cpp
 ${RBT_TEST} : fclean ${_RBT_TEST_OBJS}
 	${CC} ${CFLAGS} ${_INC_RBT_TEST} ${MEM} ${CPPSTD} ${_RBT_TEST_OBJS} -o $@
 
+# MAP
+
+${MAP_FT} : ${MAP_TEST}
+
+${MAP_STD}: _TEST=-D_NAMESPACE=std
+
+${MAP_STD}: ${MAP_TEST}
+
+
 # TEST MAP
 # generate map exectutable
 
 ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
-	${CC} ${CFLAGS} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
 
 
 # VECTOR
