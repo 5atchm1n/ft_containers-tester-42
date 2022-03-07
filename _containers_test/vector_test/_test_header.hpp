@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _test_header.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/06 14:08:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/07 17:43:24 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <iterator>
 #include <cstdlib>
 #include <climits>
+#include <iostream>
 
 #ifndef _NAMESPACE
 #define _NAMESPACE ft

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _test_modify.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/06 14:07:43 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/07 17:42:57 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ namespace _test
         if (!x.empty())
             it = x.begin() + std::rand() % x.size();
         else
-        {
             it = x.end();
-            try
+        try
             {
                 switch (std::rand() % 3)
                 {
@@ -59,7 +58,6 @@ namespace _test
             {
                 std::cout << error.what() << std::endl;
             }
-        }
     }
     /**
      * @brief TEST VECTOR ASSIGN
