@@ -107,6 +107,29 @@ ${MAP_STD}: ${MAP_TEST}
 ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
 
+LOG_DIR = log
+BIN_DIR = bin
+TEST_MAP = test_map
+
+${TEST_MAP} : tclean
+	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
+	@echo ${CYAN} "Make std_vector :\t" ${RESET}
+	@make -s ${MAP_STD}
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@${MKDIR_P} ${LOG_DIR} 
+	@mv ${MAP_TEST} ${MAP_STD}
+	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
+	@-./${MAP_STD} > ${LOG_DIR}/std.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
+	@make -s ${MAP_FT}
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@mv ${MAP_TEST} ${MAP_FT}
+	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
+	@-./${MAP_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@-diff -u ${LOG_DIR}/std.out ${LOG_DIR}/ft.out > ${LOG_DIR}/diff.log
+	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
 
 # VECTOR
 # create make calls for ft and std
