@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 19:25:36 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:51:27 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,18 +119,23 @@ namespace _test
         
     }
     
-    void test_fakeallocator()
+    template <typename _map>
+    void test_fakeallocator(_map &X, _map &Y)
     {
         std::cout << "TEST : " << test_no++;
         std::cout << " - FAKE ALLOCATOR" << std::endl;
-        try
-        {
-            _NAMESPACE::map<int,char,std::less<int>,_test::lolocator<int> > Z;
-        }
-        catch (std::exception &error)
-        {
-            std::cout << "error" << std::endl;
-        }
+        //try
+       // {
+            _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > K(Y.begin(), Y.end(), std::less<int>(), _test::lolocator<int>());
+        
+            _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > Z(X.begin(), X.end(), std::less<int>(), _test::lolocator<int>());
+        test_print(K);
+        test_print(Z);
+       // }
+        //catch (std::exception &error)
+        //{
+        //    std::cout << error.what() << std::endl;
+       // }
     }    
     
 }

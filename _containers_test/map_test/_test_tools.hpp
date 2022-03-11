@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 19:19:13 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:53:06 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ template<typename _Tp>
       typedef _Tp&       reference;
       typedef const _Tp& const_reference;
       typedef _Tp        value_type;
-      //template<typename _Tp1>
-        //struct rebind
-       // { typedef lolocator<_Tp1> other; };
+      template<typename _Tp1>
+        struct rebind
+        { typedef lolocator<_Tp1> other; };
       
       lolocator() throw() { }
       lolocator(const lolocator& __a) throw()
@@ -108,9 +108,9 @@ template<typename _Tp>
 
         pointer allocate (size_type n, std::allocator<void>::const_pointer hint=0)
         {
+            throw (lolexception());
             n++;
             hint = NULL;
-            throw (lolexception());
             return NULL;
         }
 

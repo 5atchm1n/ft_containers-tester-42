@@ -25,7 +25,8 @@ void test_map(int rdm_seed)
             &_test::test_erase,
             &_test::test_clear,
             &_test::test_arrindex_op,
-            &_test::test_bounds
+            &_test::test_bounds,
+            &_test::test_fakeallocator
         };
 
     _map X;
@@ -82,7 +83,8 @@ void test_map(int rdm_seed)
                 _test_main[_BOUNDS](Y, X);
             break;
         case (_FAKE_ALLOCATOR):
-            _test::test_fakeallocator();
+            _test_main[_FAKE_ALLOCATOR](X, Y);
+            break;
 
         }
         _test::test_print(X);
