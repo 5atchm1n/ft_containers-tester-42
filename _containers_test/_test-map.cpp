@@ -81,6 +81,8 @@ void test_map(int rdm_seed)
             else
                 _test_main[_BOUNDS](Y, X);
             break;
+        case (_FAKE_ALLOCATOR):
+            _test::test_fakeallocator();
 
         }
         _test::test_print(X);

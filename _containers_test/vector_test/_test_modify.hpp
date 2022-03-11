@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/07 17:42:57 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:52:23 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 
 namespace _test
 {
-
-        /**
-     * @brief TEST INSERT
-     */
-
     template <typename _vector>
     void test_insert(_vector &x, _vector &y)
     {

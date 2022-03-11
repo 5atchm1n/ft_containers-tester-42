@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 16:48:42 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:56:58 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ namespace _test
                         }
                     }
             }
-            test_print(X);
-            test_print(Y);
         }
         catch (std::exception &error)
         {
@@ -102,8 +100,6 @@ namespace _test
                 }
                 break;
             }
-            test_print(X);
-            test_print(Y);
         }
         catch (std::exception &error)
         {
@@ -128,8 +124,6 @@ namespace _test
                 Y.clear();
                 break;
             }
-            test_print(X);
-            test_print(Y);
         }
         catch (std::exception &error)
         {
@@ -138,4 +132,4 @@ namespace _test
     }
 
     }
-#endif  // _VECTOR_TEST_MODIFY_HPP
+#endif

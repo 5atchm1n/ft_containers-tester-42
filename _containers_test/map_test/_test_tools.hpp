@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 16:38:38 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:19:13 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,47 @@ namespace _test
     {
         return ft::pair<const int, std::string>(rdm_val<int>(), rdm_val<std::string>());
     }
+
+// Fake allocator
+template<typename _Tp>
+    class lolocator : public std::allocator<_Tp>
+    {
+   public:
+      typedef size_t     size_type;
+      typedef ptrdiff_t  difference_type;
+      typedef _Tp*       pointer;
+      typedef const _Tp* const_pointer;
+      typedef _Tp&       reference;
+      typedef const _Tp& const_reference;
+      typedef _Tp        value_type;
+      //template<typename _Tp1>
+        //struct rebind
+       // { typedef lolocator<_Tp1> other; };
+      
+      lolocator() throw() { }
+      lolocator(const lolocator& __a) throw()
+      : std::allocator<_Tp>(__a) { }
+      ~lolocator() throw() { }
+
+        pointer allocate (size_type n, std::allocator<void>::const_pointer hint=0)
+        {
+            n++;
+            hint = NULL;
+            throw (lolexception());
+            return NULL;
+        }
+
+        class lolexception : public std::exception
+        {
+            public:
+            lolexception() {};
+            const char* what() const throw()
+            {
+                return "lolocator";
+            }
+        };
+    };
+
 }
 
 #endif  //_MAP_TEST_TOOLS_HPP
