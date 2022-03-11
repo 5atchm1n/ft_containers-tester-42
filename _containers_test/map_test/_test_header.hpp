@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/07 18:57:17 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:33:00 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #define MAX_SEED 1
 
 // Total number of cases
-#define _TEST_MAIN 6
+#define _TEST_MAIN 7
 // Test cases
 #define _DEFAULT_CONSTRUCTOR 0
 #define _COPY_CONSTRUCTOR 1
@@ -39,6 +39,8 @@
 #define _INSERT 3
 #define _ERASE 4
 #define _CLEAR 5
+#define _ARRINDEX_OP 6
+#define _BOUNDS 7
 
 
 // MAX amount of values to assign/insert

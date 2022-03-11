@@ -6,7 +6,7 @@
 /*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/07 16:24:38 by atruphem         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:38:38 by atruphem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 namespace _test
 {
-    /**
-     * @brief PRINT MAP
-     */
     template <typename _map>
     void test_print(const _map &M)
     {
@@ -31,23 +28,17 @@ namespace _test
             std::cout << "content : " << std::endl;
             for (typename _map::const_iterator it = M.begin(); it != M.end(); it++)
                 std::cout << it->first << " => " << it->second << std::endl;
-        //    std::cout << "reverse content : " << std::endl;
-        //    for (typename _vector::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++)
-        //        std::cout << it->first << " => " << it->second << std::endl;
+            std::cout << "reverse content : " << std::endl;
+            for (typename _map::const_reverse_iterator it = M.rbegin(); it != M.rend(); it++)
+                std::cout << it->first << " => " << it->second << std::endl;
         }
     }
 
-    /**
-     * @brief Template overload RDM_VAL
-     */
     template <typename _Type>
     _Type rdm_val()
     {
         return (_Type());
     }
-    /**
-     * @brief Generate a random string
-     */
     template <>
     std::string rdm_val<std::string>()
     {
@@ -74,10 +65,6 @@ namespace _test
         return (std::string(default_val[std::rand() % 18]));
     }
 
-    /**
-     * @brief Generate a random UINT
-     *
-     */
     template <>
     int rdm_val<int>()
     {

@@ -23,7 +23,9 @@ void test_map(int rdm_seed)
             &_test::test_assign_op,
             &_test::test_insert,
             &_test::test_erase,
-            &_test::test_clear
+            &_test::test_clear,
+            &_test::test_arrindex_op,
+            &_test::test_bounds
         };
 
     _map X;
@@ -31,7 +33,7 @@ void test_map(int rdm_seed)
 
     for (int i = 0; i < _NTESTS; i++)
     {
-        std::cout << "MAIN TEST : " << main_test_no++ << std::endl;
+        std::cout << "TEST : " << main_test_no++ << std::endl;
         switch (std::rand() % _TEST_MAIN)
         {
         case (_DEFAULT_CONSTRUCTOR):
@@ -64,9 +66,22 @@ void test_map(int rdm_seed)
             else
                 _test_main[_ERASE](Y, X);
             break;
-        case (_CLEAR) :
+        case (_CLEAR):
             _test_main[_CLEAR](X, Y);
             break;
+        case (_ARRINDEX_OP):
+            if (std::rand() % 2)
+                _test_main[_ARRINDEX_OP](X, Y);
+            else
+                _test_main[_ARRINDEX_OP](Y, X);
+            break;
+        case (_BOUNDS):
+            if (std::rand() % 2)
+                _test_main[_BOUNDS](X, Y);
+            else
+                _test_main[_BOUNDS](Y, X);
+            break;
+
         }
         _test::test_print(X);
         _test::test_print(Y);
