@@ -6,16 +6,16 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/10 03:56:50 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/11 03:53:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VECTOR_HEADER_HPP
-#define _VECTOR_HEADER_HPP
+#ifndef _MAP_TEST_HEADER_HPP
+#define _MAP_TEST_HEADER_HPP
 
-#include "vector.hpp"
+#include "map.hpp"
 #include <string>
-#include <vector>
+#include <map>
 #include <iterator>
 #include <cstdlib>
 #include <climits>
@@ -29,33 +29,27 @@
 // max number of seeds to test
 #define MAX_SEED 10
 
+#define _MAP_MAX_KEY 1024
+
 // Total number of cases
-#define _TEST_BASIC 5
+#define _TEST_MAIN 10
 // Test cases
 #define _DEFAULT_CONSTRUCTOR 0
-#define _COPY_CONSTRUCTOR 1
-#define _ASSIGNMENT_OP 2
-#define _MIXED_0_3 3
-#define _REL_OP 4
-
-// Total number of cases
-#define _TEST_MAIN 8
-// Test cases
-#define _INSERT 0
-#define _ASSIGN 1
-#define _PUSH 2
-#define _POP 3
-#define _ERASE 4
-#define _RESIZE 5
-#define _SWAP 6
-#define _CLEAR 7
+#define _OPERATOR 1
+#define _INSERT 2
+#define _ERASE 3
+#define _CLEAR 4
+#define _BOUNDS 5
+#define _REL_OP 6
+#define _ITERATORS 7
+#define _SWAP 8
+#define _COUNT 9
 
 // MAX amount of values to assign/insert
-#define _MAX_TEST_SIZE 10
+#define _MAX_TEST_SIZE 100
 
 // Number of iterations of test suite
-#define _NTESTS 5000
-#define _NTESTS_BASIC 50
+#define _NTESTS 1000
 
 // For debugging
 static int test_no = 0;
@@ -66,4 +60,4 @@ static int main_test_no = 0;
 #include "_test_basic.hpp"
 #include "_test_modify.hpp"
 
-#endif  //_VECTOR_HEADER_HPP
+#endif  //_MAP_TEST_HEADER_HPP

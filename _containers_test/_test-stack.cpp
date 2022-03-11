@@ -10,31 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_test/_test_header.hpp"
+#include "stack_test/_test_header.hpp"
 
-template <class _map>
-void test_map(int rdm_seed)
+template <class _stack>
+void test_stack(int rdm_seed)
 {
     std::srand(rdm_seed);
-
-    void (*_test_main[])(_map &, _map &) =
+    void (*_test_main[])(_stack &, _stack &) =
         {
             &_test::test_constructors,
-            &_test::test_operator,
-            &_test::test_insert,
-            &_test::test_erase,
-            &_test::test_clear,
-            &_test::test_bounds,
             &_test::test_relational_op,
-            &_test::test_iterators,
-            &_test::test_swap,
-            &_test::test_count
+            &_test::test_push,
+            &_test::test_pop,
         };
 
-    _map X;
-    _map Y;
+    _stack X;
+    _stack Y;
 
-    main_test_no = 1;
+    main_test_no = 0;
 
     for (int i = 0; i < _NTESTS; i++)
     {
@@ -47,48 +40,23 @@ void test_map(int rdm_seed)
             else
                 _test_main[_DEFAULT_CONSTRUCTOR](Y, X);
             break;
-        case (_OPERATOR) :
-            _test_main[_OPERATOR](X, Y);
-        case (_INSERT):
-            if (std::rand() % 2)
-                _test_main[_INSERT](X, Y);
-            else
-                _test_main[_INSERT](Y, X);
-            break;
-        case (_ERASE):
-            if (std::rand() % 2)
-                _test_main[_ERASE](X, Y);
-            else
-                _test_main[_ERASE](Y, X);
-            break;
-        case (_CLEAR):
-            _test_main[_CLEAR](X, Y);
-            break;
-        case (_BOUNDS):
-            if (std::rand() % 2)
-                _test_main[_BOUNDS](X, Y);
-            else
-                _test_main[_BOUNDS](Y, X);
-        case (_REL_OP):
+        case (_REL_OP) :
             if (std::rand() % 2)
                 _test_main[_REL_OP](X, Y);
             else
                 _test_main[_REL_OP](Y, X);
-        case (_ITERATORS):
+        case (_PUSH):
             if (std::rand() % 2)
-                _test_main[_ITERATORS](X, Y);
+                _test_main[_PUSH](X, Y);
             else
-                _test_main[_ITERATORS](Y, X);
-        case (_SWAP) :
+                _test_main[_PUSH](Y, X);
+            break;
+        case (_POP):
             if (std::rand() % 2)
-                _test_main[_SWAP](X, Y);
+                _test_main[_POP](X, Y);
             else
-                _test_main[_SWAP](Y, X);
-        case (_COUNT) :
-            if (std::rand() % 2)
-                _test_main[_COUNT](X, Y);
-            else
-                _test_main[_COUNT](Y, X);
+                _test_main[_POP](Y, X);
+            break;
         }
         _test::test_print(X);
         _test::test_print(Y);
@@ -99,6 +67,6 @@ int main(void)
 {
     int seed = _SEED;
     for (int i = 0; i < MAX_SEED; i++)
-        test_map<_NAMESPACE::map<int, std::string> >(seed++);
+        test_stack<_NAMESPACE::stack<int> >(seed++);
     return 0;
 }

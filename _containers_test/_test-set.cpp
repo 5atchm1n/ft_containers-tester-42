@@ -10,17 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map_test/_test_header.hpp"
+#include "set_test/_test_header.hpp"
 
-template <class _map>
-void test_map(int rdm_seed)
+template <class _set>
+void test_set(int rdm_seed)
 {
     std::srand(rdm_seed);
 
-    void (*_test_main[])(_map &, _map &) =
+    void (*_test_main[])(_set &, _set &) =
         {
             &_test::test_constructors,
-            &_test::test_operator,
             &_test::test_insert,
             &_test::test_erase,
             &_test::test_clear,
@@ -31,8 +30,8 @@ void test_map(int rdm_seed)
             &_test::test_count
         };
 
-    _map X;
-    _map Y;
+    _set X;
+    _set Y;
 
     main_test_no = 1;
 
@@ -47,8 +46,6 @@ void test_map(int rdm_seed)
             else
                 _test_main[_DEFAULT_CONSTRUCTOR](Y, X);
             break;
-        case (_OPERATOR) :
-            _test_main[_OPERATOR](X, Y);
         case (_INSERT):
             if (std::rand() % 2)
                 _test_main[_INSERT](X, Y);
@@ -99,6 +96,6 @@ int main(void)
 {
     int seed = _SEED;
     for (int i = 0; i < MAX_SEED; i++)
-        test_map<_NAMESPACE::map<int, std::string> >(seed++);
+        test_set<_NAMESPACE::set<int> >(seed++);
     return 0;
 }

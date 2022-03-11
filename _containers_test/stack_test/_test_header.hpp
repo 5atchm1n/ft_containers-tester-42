@@ -6,14 +6,15 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/10 03:56:50 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/11 17:08:06 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _VECTOR_HEADER_HPP
 #define _VECTOR_HEADER_HPP
 
-#include "vector.hpp"
+#include "stack.hpp"
+#include <stack>
 #include <string>
 #include <vector>
 #include <iterator>
@@ -30,25 +31,12 @@
 #define MAX_SEED 10
 
 // Total number of cases
-#define _TEST_BASIC 5
+#define _TEST_MAIN 4
 // Test cases
 #define _DEFAULT_CONSTRUCTOR 0
-#define _COPY_CONSTRUCTOR 1
-#define _ASSIGNMENT_OP 2
-#define _MIXED_0_3 3
-#define _REL_OP 4
-
-// Total number of cases
-#define _TEST_MAIN 8
-// Test cases
-#define _INSERT 0
-#define _ASSIGN 1
+#define _REL_OP 1
 #define _PUSH 2
 #define _POP 3
-#define _ERASE 4
-#define _RESIZE 5
-#define _SWAP 6
-#define _CLEAR 7
 
 // MAX amount of values to assign/insert
 #define _MAX_TEST_SIZE 10
