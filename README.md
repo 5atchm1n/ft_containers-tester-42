@@ -15,7 +15,7 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 
 ```make test_bonus```   run test std vs ft (mandatory + bonus)
 
-```make test_all``      run each container tests individually
+```make test_all```      run each container tests individually
 
 ```make test_all_bonus``` run each container tests individually
 
