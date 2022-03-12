@@ -4,6 +4,8 @@
 #### STEP - 1
 Read the README !
 
+Modify the ```$INC``` variable in Makefile to point to your containers
+
 ## Intro
 
 Each container can be tested seperately. Tests are split into their respective directories :
@@ -22,22 +24,41 @@ each test runs NTEST times and attempts to modify the container at most MAX_TEST
 
 Each test is run MAX_SEED different times - the base SEED is 42.
 
+Each test is stored in a array of functions pointers - and randomly called.
+
 The tests are wrapped in a switch case - the header file in each test folder contains
 the necessary variables to modify the test. To remove a test for the unit comment out
 the case in the given file and make the wanted binary again.
 
-ex :
-![scrnsht2](https://user-images.githubusercontent.com/61289826/158005653-54339d4f-d99d-497d-b0a6-cec9c4b7c27d.png)
+example for vector :
 
-Each test is stored in a array of functions pointers - and randomly called.
+![scrnsht2](https://user-images.githubusercontent.com/61289826/158005653-54339d4f-d99d-497d-b0a6-cec9c4b7c27d.png)
 
 Feel free to add tests and remove tests to suit your build needs
 
-![scrnsht](https://user-images.githubusercontent.com/61289826/158004120-f8537caf-8fe0-4316-a21b-eee6b9cc16b7.png)
-#### BASIC USE
+### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
-Modify the ```$INC``` variable in Makefile to point to your containers
+*A full list of the rules is provided below*
 
+each container can be compiled and tested using the following syntax :
+```make [name]_[container]```
+
+so to test ft vector you would excute :
+
+```make ft_vector``` and this would generate the **ft_vector** binary.
+
+```make std_vector``` would then generate the **std_vector** binary.
+
+### RUNNING DIFF TESTS
+
+*A full list of the rules is provided below*
+
+each containers output can be tested against the std library using the folowing syntax :
+```make test_[container]```
+
+to test vector : ``` make test_vector```
+
+## BASIC USE
 ### RUN TESTS
 
 ```make```              generate ft and std binaries (mandatory)
@@ -51,6 +72,8 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 ```make test_all```      run each container tests individually
 
 ```make test_all_bonus``` run each container tests individually
+
+![scrnsht](https://user-images.githubusercontent.com/61289826/158004120-f8537caf-8fe0-4316-a21b-eee6b9cc16b7.png)
 
 #### TIME
 
