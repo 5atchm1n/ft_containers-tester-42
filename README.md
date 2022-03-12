@@ -87,7 +87,8 @@ Feel free to add tests and remove tests to suit your build needs
 ```make time_bonus```  after ```make test_all_bonus```
 
 #### VECTOR
-```make ft_vector```    to create ft::vector executable
+
+```make ft_vector``` to create ft::vector executable
 
 ```make std_vector```   to create std::vector executable
 
