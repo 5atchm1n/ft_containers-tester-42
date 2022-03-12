@@ -65,7 +65,7 @@ DEBUG = -fstandalone-debug -g3
 endif
 
 # Main
-_TEST_MAIN = _containers_test/_test-main.cpp
+_TEST_MAIN = srcs/_test-main.cpp
 
 ## INCLUDE FILES
 # Global include
