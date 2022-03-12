@@ -7,7 +7,8 @@ Read the makefile !
 
 A basic unit test for the 42 containers project, each container can be tested seperately.
 Tests are split into thier respective directories, each test runs NTEST times and attempts
-to modify the container at most MAX_TEST_SIZE.
+to modify the container at most MAX_TEST_SIZE. These variables can bet changed in the 
+_test_header file.
 
 Each test is run with a 10 different std::srand seeds, the base seed is 42.
 
@@ -17,6 +18,7 @@ the necessary variables to modify the test.
 Each test is stored in a array of functions pointers - and randomly called.
 
 Feel free to add tests and remove tests to suit your build needs
+
 ![scrnsht](https://user-images.githubusercontent.com/61289826/158004120-f8537caf-8fe0-4316-a21b-eee6b9cc16b7.png)
 #### BASIC USE
 
