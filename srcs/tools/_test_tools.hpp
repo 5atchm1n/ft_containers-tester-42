@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 02:00:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 16:23:19 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ template <>
 int rdm_val<int>()
 {
     return (int(std::rand() % MAX_MAP_KEY));
+}
+
+template <>
+ft::_const_test<int>
+rdm_val<ft::_const_test<int> >()
+{
+    return (ft::_const_test<int>(rdm_val<int>()));
 }
 
 template <>

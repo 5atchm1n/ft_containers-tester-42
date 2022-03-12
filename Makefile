@@ -33,7 +33,7 @@ OBJDIR = objs
 MKDIR_P = mkdir -p
 LOG_DIR = log
 BIN_DIR = bin
-_TEST =
+_TEST = -D_TCONST=1
 
 # Makefile colours
 RED="\033[1;31m"
@@ -63,6 +63,10 @@ MEM = -fsanitize=address
 #ifeq ($(TDEBUG),1)
 DEBUG = -fstandalone-debug -g3
 #endif
+
+ifeq ($(TCONST),0)
+_TEST =
+endif
 
 # Main
 _TEST_MAIN = srcs/_test-main.cpp
@@ -144,7 +148,7 @@ ${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 ##
 
 # Make ft_map
-${MAP_FT} : _TEST=-D_TMAP=1
+${MAP_FT} : _TEST+=-D_TMAP=1
 
 ${MAP_FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft_map:\t" ${RESET}
@@ -152,7 +156,7 @@ ${MAP_FT} : ${OBJS}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # Make std_map
-${MAP_STD}: _TEST=-D_NAMESPACE=std -D_TMAP=1
+${MAP_STD}: _TEST+=-D_NAMESPACE=std -D_TMAP=1
 
 ${MAP_STD}: ${OBJS}
 	@echo -n ${CYAN} "Make std_map :\t" ${RESET}
@@ -180,7 +184,7 @@ ${TEST_MAP} : ${MAP_STD} ${MAP_FT}
 # Make recipes to generate Map binaries
 
 # Make ft_vector
-${VEC_FT} : _TEST=-D_TVECTOR=1
+${VEC_FT} : _TEST+=-D_TVECTOR=1
 
 ${VEC_FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft_vector :\t" ${RESET}
@@ -188,7 +192,7 @@ ${VEC_FT} : ${OBJS}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # Make std_vector
-${VEC_STD} : _TEST=-D_NAMESPACE=std -D_TVECTOR=1
+${VEC_STD} : _TEST+=-D_NAMESPACE=std -D_TVECTOR=1
 
 ${VEC_STD} : ${OBJS}
 	@echo -n ${CYAN} "Make std_vector :\t" ${RESET}
@@ -218,7 +222,7 @@ ${TEST_VECTOR} : ${VEC_STD} ${VEC_FT}
 # Make recipes to generate binaries
 
 # make ft_stack
-${STACK_FT} : _TEST=-D_TSTACK=1
+${STACK_FT} : _TEST+=-D_TSTACK=1
 
 ${STACK_FT} : ${OBJS} 
 	@echo -n ${CYAN} "Make ft_stack :\t" ${RESET}
@@ -226,7 +230,7 @@ ${STACK_FT} : ${OBJS}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 #make std_stack
-${STACK_STD} : _TEST=-D_NAMESPACE=std -D_TSTACK=1 
+${STACK_STD} : _TEST+=-D_NAMESPACE=std -D_TSTACK=1 
 
 ${STACK_STD} : ${OBJS} 
 	@echo -n ${CYAN} "Make std_stack :\t" ${RESET}
@@ -326,7 +330,7 @@ tclean : clean
 	@rm -rf ${LOG_DIR} ${BIN_DIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-.PHONY : all test bonus re clean fclean tclean
+.PHONY : all bonus re clean fclean tclean
 
 # ADD DEPENDECIES
 -include ${DEPS}
