@@ -54,7 +54,8 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 
 check log folder for output
 #### NOTE
-all tests are run with ```$DEBUG``` and ```$MEM``` flags
+all tests are run without ```$DEBUG``` and ```$MEM``` flags
+to add them to ```make <rule_name> TMEM=1 TDEBUG=1```
 if any of the tests fail Make will throw an error but still proceed
 #### NOTE - to editors
 create a branch and pull request to merge into master !
