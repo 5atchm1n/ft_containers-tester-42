@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/06 14:07:43 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 03:29:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #ifndef _VECTOR_TEST_MODIFY_HPP
 #define _VECTOR_TEST_MODIFY_HPP
 
-namespace _test
+namespace _test_vector
 {
 
         /**
@@ -25,7 +25,7 @@ namespace _test
     template <typename _vector>
     void test_insert(_vector &x, _vector &y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - INSERT" << std::endl;
         typename _vector::iterator it;
         if (!x.empty())
@@ -68,14 +68,14 @@ namespace _test
     void test_assign(_vector &X, _vector &Y)
     {
         _vector Z;
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - ASSIGN" << std::endl;
         switch (std::rand() % 4)
         {
             case (0) :
                 Z.assign(0, rdm_val<typename _vector::value_type>());
             case (1) :
-                Z.assign(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+                Z.assign(std::rand() % MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
             case (2) :
                 Z.assign(Y.begin(), Y.end());
             case (3) :
@@ -88,26 +88,26 @@ namespace _test
                 if (!Z.empty())
                     X.assign(Z.begin(), Z.end() - (std::rand() % Z .size()));
         }
-        test_print(Z);
+        _test_vector::test_print(Z);
     }
     
     template <typename _vector>
     void test_push(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - PUSH_BACK" << std::endl;
         switch (std::rand() % 3)
         {
             case (0) :
-                for (int i = 0; i < std::rand() % _MAX_TEST_SIZE; i++)
+                for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                     X.push_back(rdm_val<typename _vector::value_type>());
             case (1) :
-                for (int i = 0; i < std::rand() % _MAX_TEST_SIZE; i++)
+                for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                     Y.push_back(rdm_val<typename _vector::value_type>());
             case (2) :
                 _vector Z;
                 Z.push_back(rdm_val<typename _vector::value_type>());
-                test_print(Z);
+                _test_vector::test_print(Z);
         }
     }
 
@@ -115,7 +115,7 @@ namespace _test
     template <typename _vector>
     void test_pop(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - POP" << std::endl;
         switch (std::rand() % 2)
         {
@@ -133,7 +133,7 @@ namespace _test
     template <typename _vector>
     void test_erase(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - ERASE" << std::endl;
         typename _vector::iterator pos;
         switch (std::rand() % 4)
@@ -163,7 +163,7 @@ namespace _test
     void
     test_clear(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << vtest_no++;
         std::cout << " - CLEAR" << std::endl;
         if (std::rand() % 2)
             X.clear();

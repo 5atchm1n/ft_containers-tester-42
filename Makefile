@@ -1,45 +1,40 @@
 ### MAKEFILE FOR CONTAINERS
 
-## INCLUDE FILES
-# Global include
-
-INC = -I./containers
-
 ## VARIABLES
 # Makefile Rules
 
-NAME = ft_containers
-
-MAP_TEST = map_test
-
-VEC_TEST = vector_test
-
+## RUN COMPARE TESTS
+TEST_MAP = test_map
+TEST_VECTOR = test_vector
+TEST_SET = test_set
+TEST_STACK = test_stack
+TEST = test
+TEST_ALL = test_all
+TEST_BONUS = test_bonus
+## RULES
+FT = ft
+STD = std
+# VECTOR
 VEC_FT = ft_vector
-
 VEC_STD = std_vector
-
+# MAP
 MAP_FT = ft_map
-
 MAP_STD = std_map
+# SET
+SET_FT = ft_set
+SET_STD = std_set
+# STACK
+STACK_FT = ft_stack
+STACK_STD = std_stack
 
-# Compiler directives
-
-CC = clang++
-CPPSTD = -std=c++98
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
-
-# Debug and Memory
-
-MEM = -fsanitize=address 
-DEBUG = -fstandalone-debug -g3
-
-# Makefile recipe specific Rules
-
+# Makefile recipe specific variables
 OBJDIR = objs
 MKDIR_P = mkdir -p
+LOG_DIR = log
+BIN_DIR = bin
+_TEST =
 
 # Makefile colours
-
 RED="\033[1;31m"
 GREEN="\033[1;32m"
 YELLOW="\033[1;33m"
@@ -49,130 +44,270 @@ CYAN="\033[1;36m"
 GREY="\033[0;37m"
 RESET="\033[m"
 
+# Compiler directives
 
-## SOURCE FILES
-# Default
-SRC = _containers_test/main3.cpp
-# Map
-_MAP_TEST = _containers_test/_test-map.cpp
-# Vector
-_VEC_TEST = _containers_test/_test-vector.cpp
-# END
-
-
-# custom include
-_INC_RBT_TEST = -I./containers/map/rbtree
+CC = clang++
+CPPSTD = -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP
 
 ## DEPENDECIES recipe
 DEPS = ${OBJS:.o=.d}
-VEC_DEPS = ${_VEC_TEST_OBJS:.o=.d}
+
+# Debug and Memory
+
+ifeq ($(TMEM),1)
+MEM = -fsanitize=address 
+endif
+
+ifeq ($(TDEBUG),1)
+DEBUG = -fstandalone-debug -g3
+endif
+
+ifndef $(TSIZE)
+TSIZE = 1000
+endif
+
+NTESTS = -D_NTESTS=${TSIZE}
+
+# Main
+_TEST_MAIN = _containers_test/_test-main.cpp
+
+## INCLUDE FILES
+# Global include
+INC = -I./containers
 
 ## OBJS DIR recipe
-OBJS = $(addprefix ${OBJDIR}/, ${SRC:.cpp=.o})
-_VEC_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_VEC_TEST:.cpp=.o})
-_RBT_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_RBT_TEST:.cpp=.o})
-_MAP_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_MAP_TEST:.cpp=.o})
-
-# GLOBAL MAKE ALL
-
-all : ${NAME}
-# default recipe
-${NAME} : ${OBJS}
-	${CC} ${CFLAGS} ${INC} ${MEM} ${CPPSTD} ${OBJS} -o $@
+OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})
 
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
 	@${MKDIR_P} ${@D}
-	${CC} ${CFLAGS} ${_TEST} ${INC} $(DEBUG) $(_INC_RBT_TEST) ${MEM} ${CPPSTD} -c $< -o $@
+	${CC} ${CXXFLAGS} ${_TEST} ${NTESTS} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
 
-# END GLOBAL ALL
+##
+# GLOBAL
+##
+all : ${FT} ${STD}
 
-# TEST RED BLACK TREE
-# generate tree exectutable
-${RBT_TEST} : fclean ${_RBT_TEST_OBJS}
-	${CC} ${CFLAGS} ${_INC_RBT_TEST} ${MEM} ${CPPSTD} ${_RBT_TEST_OBJS} -o $@
+bonus : _TEST+=-D_TMAP=1
 
-# MAP
+bonus : ${FT} ${STD}
 
-${MAP_FT} : ${MAP_TEST}
+# make ft
 
-${MAP_STD}: _TEST=-D_NAMESPACE=std
+${FT} : _TEST+=-D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
 
-${MAP_STD}: ${MAP_TEST}
-
-
-# TEST MAP
-# generate map exectutable
-
-${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
-	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
-
-LOG_DIR = log
-BIN_DIR = bin
-TEST_MAP = test_map
-
-${TEST_MAP} : tclean
-	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
-	@echo ${CYAN} "Make std_vector :\t" ${RESET}
-	@make -s ${MAP_STD}
+${FT} : ${OBJS}
+	@echo -n ${CYAN} "Make ft : \t\t"
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@${MKDIR_P} ${LOG_DIR} 
-	@mv ${MAP_TEST} ${MAP_STD}
+
+# make std
+
+${STD} : _TEST+=-D_NAMESPACE=std -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
+
+${STD} : ${OBJS}
+	@echo -n ${CYAN} "Make std : \t\t"
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+# make test
+
+${TEST} : ${FT} ${STD}
+	@${MKDIR_P} ${LOG_DIR}
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
-	@-./${MAP_STD} > ${LOG_DIR}/std.out
+	@-./${STD} > ${LOG_DIR}/${STD}.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
-	@make -s ${MAP_FT}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@mv ${MAP_TEST} ${MAP_FT}
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
-	@-./${MAP_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
+	@-./${FT} > ${LOG_DIR}/${FT}.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/std.out ${LOG_DIR}/ft.out > ${LOG_DIR}/diff.log
+	@-diff -u ${LOG_DIR}/${STD}.out ${LOG_DIR}/${FT}.out > ${LOG_DIR}/diff.log
+	@${MKDIR_P} ${BIN_DIR}
+	@mv -t ${BIN_DIR} ${FT} ${STD}
+	@echo ${CYAN} "\n\tcheck bin dir for binaries" ${RESET}
+	@echo ${BLUE} "\tcheck log dir for output" ${RESET}
+
+#make test_all
+
+${TEST_ALL} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK}
+	@${MKDIR_P} ${BIN_DIR}
+	@mv -t ${BIN_DIR} ${VEC_STD} ${MAP_STD} ${STACK_STD} ${VEC_FT} ${MAP_FT} ${STACK_FT}
+
+# make test_bonus
+
+${TEST_BONUS} : ${TEST_SET}
+	@${MKDIR_P} ${BIN_DIR}
+	@mv -t ${BIN_DIR} ${SET_STD} ${SET_FT}
+
+# END GLOBAL
+
+##
+# MAP
+##
+
+# Make ft_map
+${MAP_FT} : _TEST=-D_TMAP=1
+
+${MAP_FT} : ${OBJS}
+	@echo -n ${CYAN} "Make ft_map:\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+# Make std_map
+${MAP_STD}: _TEST=-D_NAMESPACE=std -D_TMAP=1
+
+${MAP_STD}: ${OBJS}
+	@echo -n ${CYAN} "Make std_map :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+
+${TEST_MAP} : ${MAP_STD} ${MAP_FT}
+	@echo ${BLUE} "\n\t RUN MAP TESTS" ${RESET}
+	@${MKDIR_P} ${LOG_DIR} 
+	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
+	@-./${MAP_STD} > ${LOG_DIR}/${MAP_STD}.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
+	@-./${MAP_FT} > ${LOG_DIR}/${MAP_FT}.out 2> ${LOG_DIR}/${MAP_FT}.mem.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@-diff -u ${LOG_DIR}/${MAP_STD}.out ${LOG_DIR}/${MAP_FT}.out > ${LOG_DIR}/map.diff.log
 	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
 
+# MAP END
+
+##
 # VECTOR
-# create make calls for ft and std
+##
+# Make recipes to generate Map binaries
 
-${VEC_FT} : ${VEC_TEST}
-	mv ${VEC_TEST} ${VEC_FT}
+# Make ft_vector
+${VEC_FT} : _TEST=-D_TVECTOR=1
 
-${VEC_STD} : _TEST=-D_NAMESPACE=std
+${VEC_FT} : ${OBJS}
+	@echo -n ${CYAN} "Make ft_vector :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-${VEC_STD} : ${VEC_TEST}
-	mv ${VEC_TEST} ${VEC_STD}
+# Make std_vector
+${VEC_STD} : _TEST=-D_NAMESPACE=std -D_TVECTOR=1
 
-# VECTOR
-# generate vector exectutable
+${VEC_STD} : ${OBJS}
+	@echo -n ${CYAN} "Make std_vector :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-${VEC_TEST} : clean ${_VEC_TEST_OBJS}
-	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
+# VECTOR TEST
 
-LOG_DIR = log
-BIN_DIR = bin
-TEST_VECTOR = test_vector
 
-${TEST_VECTOR} :
+${TEST_VECTOR} : ${VEC_STD} ${VEC_FT}
 	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
-	@echo ${CYAN} "Make std_vector :\t" ${RESET}
-	@make -s ${VEC_STD}
-	@echo ${GREEN} "[ OK ]" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
-	@-./${VEC_STD} > ${LOG_DIR}/std.out
+	@-./${VEC_STD} > ${LOG_DIR}/${VEC_STD}.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
-	@make -s ${VEC_FT}
-	@echo ${GREEN} "[ OK ]" ${RESET}
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
-	@-./${VEC_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
+	@-./${VEC_FT} > ${LOG_DIR}/${VEC_FT}.out 2> ${LOG_DIR}/${VEC_FT}.mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo -n ${YELLOW} "checking diff\t\t" ${RESET}
-	@-diff -u ${LOG_DIR}/std.out ${LOG_DIR}/ft.out > ${LOG_DIR}/diff.log
-	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@-diff -u ${LOG_DIR}/${VEC_STD}.out ${LOG_DIR}/${VEC_FT}.out > ${LOG_DIR}/vector.diff.log
 	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
 
 # VECTOR END
+
+##
+# STACK
+##
+# Make recipes to generate binaries
+
+# make ft_stack
+${STACK_FT} : _TEST=-D_TSTACK=1
+
+${STACK_FT} : ${OBJS} 
+	@echo -n ${CYAN} "Make ft_stack :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+#make std_stack
+${STACK_STD} : _TEST=-D_NAMESPACE=std -D_TSTACK=1 
+
+${STACK_STD} : ${OBJS} 
+	@echo -n ${CYAN} "Make std_stack :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+# TEST STACK
+
+${TEST_STACK} : ${STACK_STD} ${STACK_FT}
+	@echo ${BLUE} "\n\t RUN STACK TESTS" ${RESET}
+	@${MKDIR_P} ${LOG_DIR} 
+	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
+	@-./${STACK_STD} > ${LOG_DIR}/${STACK_STD}.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
+	@-./${STACK_FT} > ${LOG_DIR}/${STACK_FT}.out 2> ${LOG_DIR}/${STACK_FT}.mem.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@-diff -u ${LOG_DIR}/${STACK_STD}.out ${LOG_DIR}/${STACK_FT}.out > ${LOG_DIR}/stack.diff.log
+	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+
+# END STACK
+
+##
+# SET
+##
+# Make recipes to generate binaries
+
+# make ft_set
+${SET_FT} : _TEST+=-D_TSET=1
+
+${SET_FT} : ${OBJS}
+	@echo -n ${CYAN} "Make ft_set:\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+# make std_set
+${SET_STD}: _TEST+=-D_NAMESPACE=std -D_TSET=1
+
+${SET_STD}: ${OBJS}
+	@echo -n ${CYAN} "Make std_set :\t" ${RESET}
+	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+
+# TEST SET
+
+${TEST_SET} : ${SET_STD} ${SET_FT}
+	@echo ${BLUE} "\n\t RUN SET TESTS" ${RESET}
+	@${MKDIR_P} ${LOG_DIR} 
+	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
+	@-./${SET_STD} > ${LOG_DIR}/${SET_STD}.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
+	@-./${SET_FT} > ${LOG_DIR}/${SET_FT}.out 2> ${LOG_DIR}/${SET_FT}.mem.out
+	@echo ${GREEN} "[ DONE ]" ${RESET}
+	@-diff -u ${LOG_DIR}/${SET_STD}.out ${LOG_DIR}/${SET_FT}.out > ${LOG_DIR}/set.diff.log
+	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+
+# SET END
+
+# TEST TIMING
+time :
+	@echo -n ${YELLOW} "std::vector = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${VEC_STD} > /dev/null
+	@echo -n ${BLUE} "ft::vector = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${VEC_FT} > /dev/null
+	@echo -n ${YELLOW} "std::map = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${MAP_STD} > /dev/null
+	@echo -n ${BLUE} "ft::map = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${MAP_FT} > /dev/null
+	@echo -n ${YELLOW} "std::stack = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${STACK_STD} > /dev/null
+	@echo -n ${BLUE} "ft::stack = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${STACK_FT} > /dev/null
+
+time_bonus:
+	@echo -n ${YELLOW} "std::set = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${SET_STD} > /dev/null
+	@echo -n ${BLUE} "ft::set = " ${RESET}
+	@/usr/bin/time -f "real : %E -- user : %U -- sys : %S" ./${BIN_DIR}/${SET_FT} > /dev/null
 
 # COMMON RULES
 re : fclean all
@@ -182,22 +317,18 @@ clean :
 	@rm -rf ${OBJDIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-fclean : clean tclean lclean
+fclean : clean tclean
 	@echo -n ${BLUE} "clean binaries:\t" ${RESET}
-	@rm -f  ${NAME} ${TEST_VECTOR} ${VEC_FT} ${VEC_STD}
+	@rm -f ${VEC_FT} ${VEC_STD} ${MAP_STD} ${MAP_FT} ${SET_FT} ${SET_STD} ${STACK_FT} ${STACK_STD} ${FT} ${STD}
+	@rm -rf ${BIN_DIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 tclean : clean
-	@echo -n ${BLUE} "clean tests:\t\t" ${RESET}
-	@rm -rf ${VEC_TEST} ${VEC_FT} ${VEC_STD}
+	@echo -n ${BLUE} "clean test logs :\t" ${RESET}
+	@rm -rf ${LOG_DIR} ${BIN_DIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-lclean :
-	@echo -n ${BLUE} "clean logs:\t\t" ${RESET}
-	@rm -rf ${LOG_DIR}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-
-.PHONY : all clean fclean tclean
+.PHONY : all test bonus re clean fclean tclean
 
 # ADD DEPENDECIES
 -include ${DEPS}
