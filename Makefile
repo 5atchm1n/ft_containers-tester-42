@@ -9,8 +9,9 @@ TEST_VECTOR = test_vector
 TEST_SET = test_set
 TEST_STACK = test_stack
 TEST = test
-TEST_ALL = test_all
 TEST_BONUS = test_bonus
+TEST_ALL = test_all
+TEST_ALL_BONUS = test_all_bonus
 ## RULES
 FT = ft
 STD = std
@@ -63,12 +64,6 @@ ifeq ($(TDEBUG),1)
 DEBUG = -fstandalone-debug -g3
 endif
 
-ifndef $(TSIZE)
-TSIZE = 1000
-endif
-
-NTESTS = -D_NTESTS=${TSIZE}
-
 # Main
 _TEST_MAIN = _containers_test/_test-main.cpp
 
@@ -82,20 +77,20 @@ OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
 	@${MKDIR_P} ${@D}
-	${CC} ${CXXFLAGS} ${_TEST} ${NTESTS} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
+	${CC} ${CXXFLAGS} ${_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
 
 ##
 # GLOBAL
 ##
 all : ${FT} ${STD}
 
-bonus : _TEST+=-D_TMAP=1
+bonus : _TEST+=-D_TSET=1
 
 bonus : ${FT} ${STD}
 
 # make ft
 
-${FT} : _TEST+=-D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
+${FT} : _TEST+= -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
 
 ${FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft : \t\t"
@@ -104,7 +99,7 @@ ${FT} : ${OBJS}
 
 # make std
 
-${STD} : _TEST+=-D_NAMESPACE=std -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
+${STD} : _TEST+= -D_NAMESPACE=std -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
 
 ${STD} : ${OBJS}
 	@echo -n ${CYAN} "Make std : \t\t"
@@ -114,6 +109,7 @@ ${STD} : ${OBJS}
 # make test
 
 ${TEST} : ${FT} ${STD}
+	@echo ${BLUE} "\n\t RUN CONTAINERS TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR}
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
 	@-./${STD} > ${LOG_DIR}/${STD}.out
@@ -122,10 +118,10 @@ ${TEST} : ${FT} ${STD}
 	@-./${FT} > ${LOG_DIR}/${FT}.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 	@-diff -u ${LOG_DIR}/${STD}.out ${LOG_DIR}/${FT}.out > ${LOG_DIR}/diff.log
-	@${MKDIR_P} ${BIN_DIR}
-	@mv -t ${BIN_DIR} ${FT} ${STD}
-	@echo ${CYAN} "\n\tcheck bin dir for binaries" ${RESET}
 	@echo ${BLUE} "\tcheck log dir for output" ${RESET}
+
+# make test_bonus
+${TEST_BONUS} : bonus ${TEST}
 
 #make test_all
 
@@ -133,11 +129,13 @@ ${TEST_ALL} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK}
 	@${MKDIR_P} ${BIN_DIR}
 	@mv -t ${BIN_DIR} ${VEC_STD} ${MAP_STD} ${STACK_STD} ${VEC_FT} ${MAP_FT} ${STACK_FT}
 
-# make test_bonus
-
-${TEST_BONUS} : ${TEST_SET}
+${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 	@${MKDIR_P} ${BIN_DIR}
-	@mv -t ${BIN_DIR} ${SET_STD} ${SET_FT}
+	@mv -t ${BIN_DIR} ${VEC_STD} ${MAP_STD} \
+			${STACK_STD} ${VEC_FT} ${MAP_FT} \
+			${STACK_FT} ${SET_FT} ${SET_STD}
+
+# make test_bonus
 
 # END GLOBAL
 
