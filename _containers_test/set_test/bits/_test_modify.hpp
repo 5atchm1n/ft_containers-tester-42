@@ -6,44 +6,42 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/10 04:49:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 03:30:51 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_test_tools.hpp"
 
-#ifndef _MAP_TEST_MODIFY_HPP
-#define _MAP_TEST_MODIFY_HPP
+#ifndef _SET_TEST_MODIFY_HPP
+#define _SET_TEST_MODIFY_HPP
 
-namespace _test
+namespace _test_set
 {
 
         /**
      * @brief TEST INSERT
      */
     
-    template <typename _map>
-    void test_insert(_map &X, _map &Y)
+    template <typename _set>
+    void test_insert(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - INSERT" << std::endl;
-        typename _map::iterator it;
+        typename _set::iterator it;
 
-        typedef typename _NAMESPACE::pair<typename _map::key_type, typename _map::mapped_type> pair_type;
-        typedef typename _NAMESPACE::pair< typename _map::iterator, bool>   pair_return;
+        typedef typename _NAMESPACE::pair< typename _set::iterator, bool>   pair_return;
         
         pair_return     ret; 
-        pair_type       value;
+
         try
         {
             switch (std::rand() % 4)
             {
                 case (0):
-                    for (int i = 0; i < std::rand() % _MAX_TEST_SIZE; i++)
+                    for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                     {
-                        ret = X.insert(rdm_val<typename _map::value_type>());
-                        std::cout << "key :" << ret.first->first << std::endl;
-                        std::cout << " value : " << ret.first->second << std::endl;
+                        ret = X.insert(rdm_val<typename _set::value_type>());
+                        std::cout << "key :" << *ret.first << std::endl;
                         std::cout << "already in :" << ret.second << std::endl;
                     }
                     break;
@@ -51,16 +49,14 @@ namespace _test
                     if (!X.empty())
                     {
                         ret = X.insert(*(X.begin()));
-                        std::cout << "key :" << ret.first->first << std::endl;
-                        std::cout << " value : " << ret.first->second << std::endl;
+                        std::cout << "key :" << *ret.first << std::endl;
                         std::cout << "already in :" << ret.second << std::endl;
 
                     }
                     if (!Y.empty())
                     {
                         ret = Y.insert(*(--(Y.end())));
-                        std::cout << "key :" << ret.first->first << std::endl;
-                        std::cout << " value : " << ret.first->second << std::endl;
+                        std::cout << "key :" << *ret.first << std::endl;
                         std::cout << "already in :" << ret.second << std::endl;
                     }
                     break;
@@ -73,13 +69,11 @@ namespace _test
                 case (3):
                     if (!Y.empty())
                     {
-                        typename _map::key_type test;
+                        typename _set::key_type test = rdm_val<typename _set::key_type>();
                         it = Y.begin();
-                        test = it->first;
-                        for (int k = 0; k < std::rand() % _MAX_TEST_SIZE; k++)
+                        for (int k = 0; k < std::rand() % MAX_TEST_SIZE; k++)
                         {
-                            value = _NAMESPACE::make_pair(test, rdm_val<typename _map::mapped_type>());
-                            it = Y.insert(it, value);
+                            it = Y.insert(it, test);
                             test++;
                         }
                     }
@@ -93,12 +87,12 @@ namespace _test
         }
     }
     
-    template <typename _map>
-    void test_erase(_map &X, _map &Y)
+    template <typename _set>
+    void test_erase(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - ERASE" << std::endl;
-        typename _map::iterator it;
+        typename _set::iterator it;
             switch (std::rand() % 4)
             {
                 case (0) :
@@ -108,14 +102,14 @@ namespace _test
                     break ;
                 case (1) :
                     std::cout << "case 1" << std::endl;
-                    std::cout << "Elements erased : " << X.erase(rdm_val<typename _map::key_type>()) << std::endl;
+                    std::cout << "Elements erased : " << X.erase(rdm_val<typename _set::key_type>()) << std::endl;
                     break ;
                 case (2) :
                     std::cout << "case 2" << std::endl;
-                    if (X.size() > _MAX_TEST_SIZE)
+                    if (X.size() > MAX_TEST_SIZE)
                     {
                         it = X.begin();
-                        for (int i = 0; i < std::rand() % _MAX_TEST_SIZE; i++)
+                        for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                             it++;
                         X.erase(it, X.end());
                     }
@@ -133,13 +127,13 @@ namespace _test
             }
     }
 
-    template <typename _map>
-    void test_bounds(_map &X, _map &Y)
+    template <typename _set>
+    void test_bounds(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - BOUNDS" << std::endl;
         
-        typedef typename _map::iterator iterator;
+        typedef typename _set::iterator iterator;
         iterator it;
         iterator itlow;
         iterator itup;
@@ -156,15 +150,15 @@ namespace _test
                     if (it != X.end())
                     {
                         std::cout << "chosen node" << std::endl;
-                        std::cout << it->first << " => " << it->second << std::endl;
-                        itlow = X.lower_bound(it->first);
-                        itup = X.upper_bound(it->first);
+                        std::cout << *it << std::endl;
+                        itlow = X.lower_bound(*it);
+                        itup = X.upper_bound(*it);
                         std::cout << "lower" << std::endl;
                         for (iterator it = itlow; it != X.end(); ++it)
-                            std::cout << it->first << " => " << it->second << std::endl;
+                            std::cout << *it << std::endl;
                         std::cout << "upper" << std::endl;
                         for (iterator it = itup; it != X.end(); ++it)
-                            std::cout << it->first << " => " << it->second << std::endl;
+                            std::cout << *it << std::endl;
                     }
                 }
             case (1) :
@@ -178,27 +172,27 @@ namespace _test
                     if (it != Y.end())
                     {
                         std::cout << "chosen node" << std::endl;
-                        std::cout << it->first << " => " << it->second << std::endl;
-                        itlow = Y.lower_bound(it->first);
-                        itup = Y.upper_bound(it->first);
+                        std::cout << *it << std::endl;
+                        itlow = Y.lower_bound(*it);
+                        itup = Y.upper_bound(*it);
                         std::cout << "lower" << std::endl;
                         for (iterator it = itlow; it != Y.end(); ++it)
-                            std::cout << it->first << " => " << it->second << std::endl;
+                            std::cout << *it<< std::endl;
                         std::cout << "upper" << std::endl;
                         for (iterator it = itup; it != Y.end(); ++it)
-                            std::cout << it->first << " => " << it->second << std::endl;
+                            std::cout << *it << std::endl;
                     }
                 }
         }
     }
 
-    template <typename _map>
+    template <typename _set>
     void
-    test_clear(_map &X, _map &Y)
+    test_clear(_set &X, _set &Y)
     {
         (void)X;
         (void)Y;
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - CLEAR" << std::endl;
         if (std::rand() % 2)
             X.clear();
@@ -208,4 +202,4 @@ namespace _test
     
 }
 
-#endif  // _map_TEST_MODIFY_HPP
+#endif  // _SET_TEST_MODIFY_HPP

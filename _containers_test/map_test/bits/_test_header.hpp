@@ -6,52 +6,36 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 17:08:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 01:53:09 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _VECTOR_HEADER_HPP
-#define _VECTOR_HEADER_HPP
+#ifndef _MAP_TEST_HEADER_HPP
+#define _MAP_TEST_HEADER_HPP
 
-#include "stack.hpp"
-#include <stack>
-#include <string>
-#include <vector>
-#include <iterator>
-#include <cstdlib>
-#include <climits>
-
-#ifndef _NAMESPACE
-#define _NAMESPACE ft
-#endif
-
-// random number seed
-#define _SEED 42
-// max number of seeds to test
-#define MAX_SEED 10
+#include "../../_test_header.hpp"
 
 // Total number of cases
-#define _TEST_MAIN 4
+#define M_TEST_MAIN 10
 // Test cases
-#define _DEFAULT_CONSTRUCTOR 0
-#define _REL_OP 1
-#define _PUSH 2
-#define _POP 3
-
-// MAX amount of values to assign/insert
-#define _MAX_TEST_SIZE 10
-
-// Number of iterations of test suite
-#define _NTESTS 5000
-#define _NTESTS_BASIC 50
+#define M_DEFAULT_CONSTRUCTOR 0
+#define M_OPERATOR 1
+#define M_INSERT 2
+#define M_ERASE 3
+#define M_CLEAR 4
+#define M_BOUNDS 5
+#define M_REL_OP 6
+#define M_ITERATORS 7
+#define M_SWAP 8
+#define M_COUNT 9
 
 // For debugging
-static int test_no = 0;
-static int main_test_no = 0;
+static int mtest_no = 0;
+static int mmain_test_no = 0;
 
 // Tests
 #include "_test_tools.hpp"
 #include "_test_basic.hpp"
 #include "_test_modify.hpp"
 
-#endif  //_VECTOR_HEADER_HPP
+#endif  //_MAP_TEST_HEADER_HPP

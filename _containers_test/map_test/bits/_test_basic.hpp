@@ -6,16 +6,16 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 03:57:26 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 03:29:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "_test_tools.hpp"
 
 #ifndef _MAP_TEST_BASIC_HPP
 #define _MAP_TEST_BASIC_HPP
 
-namespace _test
+#include "_test_header.hpp"
+
+namespace _test_map
 {
 
     /********
@@ -29,10 +29,10 @@ namespace _test
     template <typename _map>
     void test_constructors(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - CONSTRUCTORS" << std::endl;
         _map Z;
-        for (int i = 0 ; i < _MAX_TEST_SIZE; i++)
+        for (int i = 0 ; i < MAX_TEST_SIZE; i++)
             Z.insert(rdm_val<typename _map::value_type>());
         test_print(Z);
         _map W(Z.begin(),Z.end());
@@ -49,11 +49,11 @@ namespace _test
     template <typename _map>
     void test_operator(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - OPERATOR [ ] " << std::endl;
         _map Z;
 
-        for (int i = 0; i < _MAX_TEST_SIZE; i++)
+        for (int i = 0; i < MAX_TEST_SIZE; i++)
             Z[rdm_val<typename _map::key_type>()] = rdm_val<typename _map::mapped_type>();
         test_print(Z);
         (void)X;
@@ -66,7 +66,7 @@ namespace _test
     template <typename _map>
     void test_relational_op(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - RELATIONAL OPERATORS" << std::endl;
 
         _map Z(X);
@@ -123,7 +123,7 @@ namespace _test
     void test_iterators(_map &X, _map &Y)
     {
         (void)Y;
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - ITERATORS" << std::endl;
 
         typename _map::iterator it;
@@ -148,7 +148,7 @@ namespace _test
     template <typename _map>
     void test_swap(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - SWAP" << std::endl;
         if (!X.empty() && !Y.empty())
         {
@@ -164,12 +164,12 @@ namespace _test
     template <typename _map>
     void test_count(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << mtest_no++;
         std::cout << " - COUNT" << std::endl;
         
         _map Z(Y);
 
-        for (int i = 0; i < _MAP_MAX_KEY; i++)
+        for (int i = 0; i < MAX_MAP_KEY; i++)
         {
             std::cout << i ;
             if (Z.count(i) > 0)
@@ -179,6 +179,5 @@ namespace _test
     }
 
 }
-
 
 #endif  //_VECTOR_TEST_BASIC_HPP

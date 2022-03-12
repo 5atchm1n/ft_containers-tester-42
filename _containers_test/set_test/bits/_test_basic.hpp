@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 12:35:01 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 03:30:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #ifndef _SET_TEST_BASIC_HPP
 #define _SET_TEST_BASIC_HPP
 
-namespace _test
+namespace _test_set
 {
 
     /********
@@ -29,10 +29,10 @@ namespace _test
     template <typename _set>
     void test_constructors(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - CONSTRUCTORS" << std::endl;
         _set Z;
-        for (int i = 0 ; i < _MAX_TEST_SIZE; i++)
+        for (int i = 0 ; i < MAX_TEST_SIZE; i++)
             Z.insert(rdm_val<typename _set::value_type>());
         test_print(Z);
         _set W(Z.begin(),Z.end());
@@ -49,7 +49,7 @@ namespace _test
     template <typename _set>
     void test_relational_op(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - RELATIONAL OPERATORS" << std::endl;
 
         _set Z(X);
@@ -106,7 +106,7 @@ namespace _test
     void test_iterators(_set &X, _set &Y)
     {
         (void)Y;
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - ITERATORS" << std::endl;
 
         typename _set::iterator it;
@@ -131,7 +131,7 @@ namespace _test
     template <typename _set>
     void test_swap(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - SWAP" << std::endl;
         if (!X.empty() && !Y.empty())
         {
@@ -147,12 +147,12 @@ namespace _test
     template <typename _set>
     void test_count(_set &X, _set &Y)
     {
-        std::cout << "TEST : " << test_no++;
+        std::cout << "TEST : " << set_test_no++;
         std::cout << " - COUNT" << std::endl;
         
         _set Z(Y);
 
-        for (int i = 0; i < _MAP_MAX_KEY; i++)
+        for (int i = 0; i < MAX_MAP_KEY; i++)
         {
             std::cout << i ;
             if (Z.count(i) > 0)
