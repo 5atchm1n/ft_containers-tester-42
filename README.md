@@ -27,6 +27,7 @@ the necessary variables to modify the test. To remove a test for the unit commen
 the case in the given file and make the wanted binary again.
 
 ex :
+![scrnsht2](https://user-images.githubusercontent.com/61289826/158005653-54339d4f-d99d-497d-b0a6-cec9c4b7c27d.png)
 
 Each test is stored in a array of functions pointers - and randomly called.
 
