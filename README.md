@@ -1,12 +1,29 @@
-# 42_containers
-Test suite for 42_containers
+# 42 CONTAINERS TEST
 
-### STEP - 1
+#### STEP - 1
 Read the makefile !
-### BASIC
+
+## Intro
+
+A basic unit test for the 42 containers project, each container can be tested seperately.
+Tests are split into thier respective directories, each test runs NTEST times and attempts
+to modify the container at most MAX_TEST_SIZE.
+
+Each test is run with a 10 different std::srand seeds, the base seed is 42.
+
+The tests are wrapped in a switch case - the header file in each test folder contains
+the necessary variables to modify the test.
+
+Each test is stored in a array of functions pointers - and randomly called.
+
+Feel free to add tests and remove tests to suit your build needs
+
+#### BASIC USE
+
 Modify the ```$INC``` variable in Makefile to point to your containers
 
 ### RUN TESTS
+
 ```make```              generate ft and std binaries (mandatory)
 
 ```make bonus```        generate ft and std binaries (mandatory + bonus)
@@ -15,9 +32,15 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 
 ```make test_bonus```   run test std vs ft (mandatory + bonus)
 
-```make test_all``      run each container tests individually
+```make test_all```      run each container tests individually
 
-```make test_all_bonus```run each container tests individually
+```make test_all_bonus``` run each container tests individually
+
+#### TIME
+
+```make time```  after ```make test_all```
+
+```make time_bonus```  after ```make test_all_bonus```
 
 #### VECTOR
 ```make ft_vector```    to create ft::vector executable
@@ -53,8 +76,10 @@ Modify the ```$INC``` variable in Makefile to point to your containers
 ```make fclean```       clean all
 
 check log folder for output
+
 #### NOTE
-all tests are run with ```$DEBUG``` and ```$MEM``` flags
+all tests are run without ```$DEBUG``` and ```$MEM``` flags
+to add them to ```make <rule_name> TMEM=1 TDEBUG=1```
 if any of the tests fail Make will throw an error but still proceed
 #### NOTE - to editors
 create a branch and pull request to merge into master !
