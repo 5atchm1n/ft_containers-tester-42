@@ -1,19 +1,32 @@
 # 42 CONTAINERS TEST
+## A basic unit test for the 42 containers project
 
 #### STEP - 1
-Read the makefile !
+Read the README !
 
 ## Intro
 
-A basic unit test for the 42 containers project, each container can be tested seperately.
-Tests are split into thier respective directories, each test runs NTEST times and attempts
-to modify the container at most MAX_TEST_SIZE. These variables can bet changed in the 
-_test_header file.
+Each container can be tested seperately. Tests are split into their respective directories :
+<ul>
+<li> vector_test
+<li> map_test
+<li> stack_test
+<li> set_test
+</ul>
 
-Each test is run with a 10 different std::srand seeds, the base seed is 42.
+each test runs NTEST times and attempts to modify the container at most MAX_TEST_SIZE.
+
+*These variables can be changed in the srcs/_test_header.hpp file*.
+
+### MODIFYING THE TESTS
+
+Each test is run MAX_SEED different times - the base SEED is 42.
 
 The tests are wrapped in a switch case - the header file in each test folder contains
-the necessary variables to modify the test.
+the necessary variables to modify the test. To remove a test for the unit comment out
+the case in the given file and make the wanted binary again.
+
+ex :
 
 Each test is stored in a array of functions pointers - and randomly called.
 
