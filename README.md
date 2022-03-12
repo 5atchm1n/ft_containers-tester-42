@@ -36,6 +36,7 @@ Logs are output to the log directory and all tests are run with -fsanitize=addre
 <sub>*A full list of the rules is provided below*</sub>
 
 each container can be compiled and tested using the following syntax :
+
 ```make [name]_[container]```
 
 so to test ft vector you would excute :
@@ -49,6 +50,7 @@ so to test ft vector you would excute :
 <sub>*A full list of the rules is provided below*</sub>
 
 each containers output can be tested against the std library using the folowing syntax :
+
 ```make test_[container]```
 
 to test vector : ``` make test_vector```
