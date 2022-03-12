@@ -6,23 +6,31 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 04:16:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 05:08:00 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _TEST_HEADER_HPP
 #define _TEST_HEADER_HPP
 
-#ifndef _NAMESPACE
-#define _NAMESPACE ft
+# ifndef _NAMESPACE
+# define _NAMESPACE ft
+# endif
+
+# ifndef _TVECTOR
+# define _TVECTOR 0
+# endif
+
+# ifndef _TMAP
+# define _TMAP 0
+# endif
+
+#ifndef _TSTACK
+#define _TSTACK 0
 #endif
 
-#ifndef _TVECTOR
-#define _TVECTOR 0
-#endif
-
-#ifndef _TMAP
-#define _TMAP 0
+#ifndef _TSET
+#define _TSET 0
 #endif
 
 // random number seed
