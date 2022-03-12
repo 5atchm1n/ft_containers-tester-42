@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 17:22:29 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/13 00:59:21 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 
 // random number seed
-#define _SEED 7
+#define _SEED 42
 // max number of seeds to test
 #define MAX_SEED 8
 
