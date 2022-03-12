@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 05:08:00 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/12 05:35:15 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 #define _NTESTS 1000
 #endif
 
-#define MAX_TEST_SIZE 100
-#define MAX_MAP_KEY 100
+#define MAX_TEST_SIZE 1000
+#define MAX_MAP_KEY 1000
 
 #include <iostream>
 #include <iomanip>

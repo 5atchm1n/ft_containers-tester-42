@@ -77,7 +77,7 @@ OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
 	@${MKDIR_P} ${@D}
-	${CC} ${CXXFLAGS} ${_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
 
 ##
 # GLOBAL
