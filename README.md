@@ -18,18 +18,25 @@ Each container can be tested seperately. Tests are split into their respective d
 
 Each test runs NTEST times and attempts to modify the container at most MAX_TEST_SIZE. The tests are run randomly using a unique seed to enable diff tests. The basic make commands ```all``` and ```bonus``` will compile the mandatory and bonus tests respectively.
 
+<sub>*These variables can be changed in the srcs/_test_header.hpp file*</sub>
+
 To test the binaries output (std vs ft) run ```make test``` and suprise suprise to test the bonuses output
 run ```make test_bonus```. These will run tests on all the containers simultaneously. Please read the section below to compile individual tests.
 
+If any of the tests fail Make will throw an error but still proceed
+
 To run tests on all the binaries seperately run ```make test_all``` and ```make test_all_bonus``` this will run all the tests seperately and allow you to run the time commands to check the execution time.
 
-*These variables can be changed in the srcs/_test_header.hpp file*.
+Logs are output to the log directory and all tests are run with -fsanitize=address and -fstandalone-debug
+
+<sub>*this can be changed please read NOTES section*</sub>
 
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
-*A full list of the rules is provided below*
+<sub>*A full list of the rules is provided below*</sub>
 
 each container can be compiled and tested using the following syntax :
+
 ```make [name]_[container]```
 
 so to test ft vector you would excute :
@@ -40,9 +47,10 @@ so to test ft vector you would excute :
 
 ### RUNNING DIFF TESTS
 
-*A full list of the rules is provided below*
+<sub>*A full list of the rules is provided below*</sub>
 
 each containers output can be tested against the std library using the folowing syntax :
+
 ```make test_[container]```
 
 to test vector : ``` make test_vector```
@@ -120,11 +128,12 @@ Feel free to add tests and remove tests to suit your build needs
 
 ```make fclean```       clean all
 
-check log folder for output
-
 #### NOTE
-all tests are run without ```$DEBUG``` and ```$MEM``` flags
-to add them to ```make <rule_name> TMEM=1 TDEBUG=1```
-if any of the tests fail Make will throw an error but still proceed
+all tests are run with ```$DEBUG``` and ```$MEM``` flags
+
+you can enable and disable this by removing the corresponding commented out lines in the Makefile 
+and this will allow you to run all tests and add them via ```make <rule_name> TMEM=1 TDEBUG=1```
+when you see fit if you dont know what im talking about then leave it alone.
+
 #### NOTE - to editors
 create a branch and pull request to merge into master !
