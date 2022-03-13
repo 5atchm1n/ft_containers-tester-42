@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   _test_basic.hpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 19:51:27 by atruphem         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "_test_tools.hpp"
 
 #ifndef _MAP_TEST_BASIC_HPP
@@ -128,12 +116,12 @@ namespace _test
         {
             if(!Y.empty())
             {
-                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > K(Y.begin(), Y.end(), std::less<int>(), _test::lolocator<int>());
+                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<_NAMESPACE::pair<int, std::string> > > K(Y.begin(), Y.end(), std::less<int>(), _test::lolocator<_NAMESPACE::pair<int, std::string> >());
                 test_print(K);
             }
             if(!X.empty())
             {
-                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > Z(X.begin(), X.end(), std::less<int>(), _test::lolocator<int>());
+                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<_NAMESPACE::pair<int, std::string> > > Z(X.begin(), X.end(), std::less<int>(), _test::lolocator<_NAMESPACE::pair<int, std::string> >());
                 test_print(Z);
             }
         }
