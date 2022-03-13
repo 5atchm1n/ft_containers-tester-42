@@ -1,4 +1,4 @@
-# 42 CONTAINERS TEST
+# 42 FT_CONTAINERS TESTER
 ## A basic unit test for the 42 containers project
 
 #### STEP - 1
