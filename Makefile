@@ -69,7 +69,7 @@ CONST_TEST =
 endif
 
 # Main
-_TEST_MAIN = _test_srcs/_test-main.cpp
+_TEST_MAIN = srcs/_test-main.cpp
 
 ## INCLUDE FILES
 # Global include
