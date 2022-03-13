@@ -126,8 +126,9 @@ ${TEST} :
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${FT} > ${LOG_DIR}/${FT}.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/${STD}.out ${LOG_DIR}/${FT}.out > ${LOG_DIR}/diff.log
-	@echo ${BLUE} "\tcheck log dir for output" ${RESET}
+	@echo -n ${BLUE} "\n\tcheck log dir for output : " ${RESET}
+	@diff -u ${LOG_DIR}/${STD}.out ${LOG_DIR}/${FT}.out > ${LOG_DIR}/diff.log
+	@echo ${GREEN} "no diff" ${RESET}
 
 # make test_bonus
 ${TEST_BONUS} : bonus ${TEST}
@@ -181,8 +182,9 @@ ${TEST_MAP} :
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${MAP_FT} > ${LOG_DIR}/${MAP_FT}.out 2> ${LOG_DIR}/${MAP_FT}.mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/${MAP_STD}.out ${LOG_DIR}/${MAP_FT}.out > ${LOG_DIR}/map.diff.log
-	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+	@echo -n ${BLUE} "\n\tcheck log dir for output : " ${RESET}
+	@diff -u ${LOG_DIR}/${MAP_STD}.out ${LOG_DIR}/${MAP_FT}.out > ${LOG_DIR}/map.diff.log
+	@echo ${GREEN} "no diff" ${RESET}
 
 # MAP END
 
@@ -221,8 +223,9 @@ ${TEST_VECTOR} :
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${VEC_FT} > ${LOG_DIR}/${VEC_FT}.out 2> ${LOG_DIR}/${VEC_FT}.mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/${VEC_STD}.out ${LOG_DIR}/${VEC_FT}.out > ${LOG_DIR}/vector.diff.log
-	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+	@echo -n ${BLUE} "\n\tcheck log dir for output : " ${RESET}
+	@diff -u ${LOG_DIR}/${VEC_STD}.out ${LOG_DIR}/${VEC_FT}.out > ${LOG_DIR}/vector.diff.log
+	@echo ${GREEN} "no diff" ${RESET}
 
 # VECTOR END
 
@@ -260,8 +263,9 @@ ${TEST_STACK} :
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${STACK_FT} > ${LOG_DIR}/${STACK_FT}.out 2> ${LOG_DIR}/${STACK_FT}.mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/${STACK_STD}.out ${LOG_DIR}/${STACK_FT}.out > ${LOG_DIR}/stack.diff.log
-	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+	@echo -n ${BLUE} "\n\tcheck log dir for output : " ${RESET}
+	@diff -u ${LOG_DIR}/${STACK_STD}.out ${LOG_DIR}/${STACK_FT}.out > ${LOG_DIR}/stack.diff.log
+	@echo ${GREEN} "no diff" ${RESET}
 
 # END STACK
 
@@ -299,8 +303,9 @@ ${TEST_SET} :
 	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
 	@-./${SET_FT} > ${LOG_DIR}/${SET_FT}.out 2> ${LOG_DIR}/${SET_FT}.mem.out
 	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@-diff -u ${LOG_DIR}/${SET_STD}.out ${LOG_DIR}/${SET_FT}.out > ${LOG_DIR}/set.diff.log
-	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+	@echo -n ${BLUE} "\n\tcheck log dir for output : " ${RESET}
+	@diff -u ${LOG_DIR}/${SET_STD}.out ${LOG_DIR}/${SET_FT}.out > ${LOG_DIR}/set.diff.log
+	@echo ${GREEN} "no diff" ${RESET}
 
 # SET END
 
@@ -344,7 +349,7 @@ tclean : clean
 	@rm -rf ${LOG_DIR} ${BIN_DIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-.PHONY : all bonus re fclean tclean
+.PHONY : all bonus re fclean tclean time time_bonus
 
 # ADD DEPENDECIES
 -include ${DEPS}

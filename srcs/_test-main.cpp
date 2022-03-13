@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 22:59:32 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 16:54:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/13 14:42:26 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void)
         test_stack<_NAMESPACE::stack<ft::_const_test<int> > >(seed);
      #endif
      #if _TSET
-        test_set<_NAMESPACE::set<ft::_const_test<int> >(seed);
+        test_set<_NAMESPACE::set<ft::_const_test<int> > >(seed);
      #endif    
     
     #endif
