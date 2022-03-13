@@ -33,6 +33,8 @@ Logs are output to the log directory and all tests are run with -fsanitize=addre
 
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
+<sub> <b>NOTICE - as of now you must run make clean between commands </br> </sub>
+
 <sub>*A full list of the rules is provided below*</sub>
 
 each container can be compiled and tested using the following syntax :
@@ -42,6 +44,7 @@ each container can be compiled and tested using the following syntax :
 so to test ft vector you would excute :
 
 ```make ft_vector``` and this would generate the **ft_vector** binary.
+
 
 ```make std_vector``` would then generate the **std_vector** binary.
 
