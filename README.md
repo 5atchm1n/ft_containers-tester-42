@@ -89,7 +89,7 @@ Feel free to add tests and remove tests to suit your build needs
 
 ```make test_all_bonus``` run each container tests individually
 
-![scrnsht](https://user-images.githubusercontent.com/61289826/158004120-f8537caf-8fe0-4316-a21b-eee6b9cc16b7.png)
+![scrnsht](https://user-images.githubusercontent.com/61289826/158044227-7722115c-28cc-4cd7-b6e3-03c375576db1.png)
 
 #### TIME
 
