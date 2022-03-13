@@ -102,8 +102,9 @@ template<typename _Tp>
         { typedef lolocator<_Tp1> other; };
       
       lolocator() throw() { }
-      lolocator(const lolocator& __a) throw()
-      : std::allocator<_Tp>(__a) { }
+      lolocator(const lolocator& __a) throw() : std::allocator<_Tp>(__a) { }
+      template <class _U>
+      lolocator (const lolocator<_U>& __a) throw() : std::allocator<_Tp>(std::allocator<_U>(__a)) {}
       ~lolocator() throw() { }
 
         pointer allocate (size_type n, std::allocator<void>::const_pointer hint=0)

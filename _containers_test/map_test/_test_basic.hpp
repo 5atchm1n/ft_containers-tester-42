@@ -124,18 +124,23 @@ namespace _test
     {
         std::cout << "TEST : " << test_no++;
         std::cout << " - FAKE ALLOCATOR" << std::endl;
-        //try
-       // {
-            _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > K(Y.begin(), Y.end(), std::less<int>(), _test::lolocator<int>());
-        
-            _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > Z(X.begin(), X.end(), std::less<int>(), _test::lolocator<int>());
-        test_print(K);
-        test_print(Z);
-       // }
-        //catch (std::exception &error)
-        //{
-        //    std::cout << error.what() << std::endl;
-       // }
+        try
+        {
+            if(!Y.empty())
+            {
+                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > K(Y.begin(), Y.end(), std::less<int>(), _test::lolocator<int>());
+                test_print(K);
+            }
+            if(!X.empty())
+            {
+                _NAMESPACE::map<int,std::string,std::less<int>,_test::lolocator<int> > Z(X.begin(), X.end(), std::less<int>(), _test::lolocator<int>());
+                test_print(Z);
+            }
+        }
+        catch (std::exception &error)
+        {
+            std::cout << "Vade retro fake allocator" << std::endl;
+        }
     }    
     
 }
