@@ -33,7 +33,7 @@ OBJDIR = objs
 MKDIR_P = mkdir -p
 LOG_DIR = log
 BIN_DIR = bin
-_TEST = -D_TCONST=1
+CONST_TEST = -D_TCONST=1
 
 # Makefile colours
 RED="\033[1;31m"
@@ -65,7 +65,7 @@ DEBUG = -fstandalone-debug -g3
 #endif
 
 ifeq ($(TCONST),0)
-_TEST =
+CONST_TEST =
 endif
 
 # Main
@@ -80,8 +80,10 @@ OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})
 
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
+	@echo -n ${CYAN} "Create objects : \t"
 	@${MKDIR_P} ${@D}
-	@${CC} ${CXXFLAGS} ${_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
+	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 ##
 # GLOBAL
@@ -98,7 +100,7 @@ ${FT} : _TEST+= -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
 
 ${FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft : \t\t"
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # make std
@@ -107,12 +109,14 @@ ${STD} : _TEST+= -D_NAMESPACE=std -D_TVECTOR=1 -D_TMAP=1 -D_TSTACK=1
 
 ${STD} : ${OBJS}
 	@echo -n ${CYAN} "Make std : \t\t"
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # make test
 
-${TEST} : ${FT} ${STD}
+${TEST} :
+	@make -sB ${FT}
+	@make -sB ${STD}
 	@echo ${BLUE} "\n\t RUN CONTAINERS TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR}
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
@@ -131,7 +135,9 @@ ${TEST_BONUS} : bonus ${TEST}
 
 ${TEST_ALL} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK}
 	@${MKDIR_P} ${BIN_DIR}
-	@mv -t ${BIN_DIR} ${VEC_STD} ${MAP_STD} ${STACK_STD} ${VEC_FT} ${MAP_FT} ${STACK_FT}
+	@mv -t ${BIN_DIR} ${VEC_STD} ${MAP_STD} \
+			${STACK_STD} ${VEC_FT} ${MAP_FT} \
+			${STACK_FT}
 
 ${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 	@${MKDIR_P} ${BIN_DIR}
@@ -140,7 +146,6 @@ ${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 			${STACK_FT} ${SET_FT} ${SET_STD}
 
 # make test_bonus
-
 # END GLOBAL
 
 ##
@@ -150,21 +155,23 @@ ${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 # Make ft_map
 ${MAP_FT} : _TEST+=-D_TMAP=1
 
-${MAP_FT} : ${OBJS}
+${MAP_FT} : clean ${OBJS}
 	@echo -n ${CYAN} "Make ft_map:\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # Make std_map
 ${MAP_STD}: _TEST+=-D_NAMESPACE=std -D_TMAP=1
 
-${MAP_STD}: ${OBJS}
+${MAP_STD}: clean ${OBJS}
 	@echo -n ${CYAN} "Make std_map :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 
-${TEST_MAP} : ${MAP_STD} ${MAP_FT}
+${TEST_MAP} :
+	@make -sB ${MAP_STD}
+	@make -sB ${MAP_FT}
 	@echo ${BLUE} "\n\t RUN MAP TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
@@ -188,7 +195,7 @@ ${VEC_FT} : _TEST+=-D_TVECTOR=1
 
 ${VEC_FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft_vector :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # Make std_vector
@@ -196,13 +203,15 @@ ${VEC_STD} : _TEST+=-D_NAMESPACE=std -D_TVECTOR=1
 
 ${VEC_STD} : ${OBJS}
 	@echo -n ${CYAN} "Make std_vector :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # VECTOR TEST
 
 
-${TEST_VECTOR} : ${VEC_STD} ${VEC_FT}
+${TEST_VECTOR} :
+	@make -sB ${VEC_STD}
+	@make -sB ${VEC_FT}
 	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
@@ -226,7 +235,7 @@ ${STACK_FT} : _TEST+=-D_TSTACK=1
 
 ${STACK_FT} : ${OBJS} 
 	@echo -n ${CYAN} "Make ft_stack :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 #make std_stack
@@ -234,12 +243,14 @@ ${STACK_STD} : _TEST+=-D_NAMESPACE=std -D_TSTACK=1
 
 ${STACK_STD} : ${OBJS} 
 	@echo -n ${CYAN} "Make std_stack :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # TEST STACK
 
-${TEST_STACK} : ${STACK_STD} ${STACK_FT}
+${TEST_STACK} :
+	@make -sB ${STACK_STD}
+	@make -sB ${STACK_FT}
 	@echo ${BLUE} "\n\t RUN STACK TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
@@ -263,7 +274,7 @@ ${SET_FT} : _TEST+=-D_TSET=1
 
 ${SET_FT} : ${OBJS}
 	@echo -n ${CYAN} "Make ft_set:\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # make std_set
@@ -271,12 +282,14 @@ ${SET_STD}: _TEST+=-D_NAMESPACE=std -D_TSET=1
 
 ${SET_STD}: ${OBJS}
 	@echo -n ${CYAN} "Make std_set :\t" ${RESET}
-	@${CC} ${CXXFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
+	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # TEST SET
 
-${TEST_SET} : ${SET_STD} ${SET_FT}
+${TEST_SET} :
+	@make -sB ${SET_STD}
+	@make -sB ${SET_FT}
 	@echo ${BLUE} "\n\t RUN SET TESTS" ${RESET}
 	@${MKDIR_P} ${LOG_DIR} 
 	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
@@ -330,7 +343,7 @@ tclean : clean
 	@rm -rf ${LOG_DIR} ${BIN_DIR}
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-.PHONY : all bonus re clean fclean tclean
+.PHONY : all bonus re fclean tclean
 
 # ADD DEPENDECIES
 -include ${DEPS}

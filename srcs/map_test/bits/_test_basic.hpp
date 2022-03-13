@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 03:29:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/13 01:15:06 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,14 +168,20 @@ namespace _test_map
         std::cout << " - COUNT" << std::endl;
         
         _map Z(Y);
+        _map W(X);
 
+        std::cout << "TEST Z" << std::endl;
         for (int i = 0; i < MAX_MAP_KEY; i++)
         {
-            std::cout << i ;
             if (Z.count(i) > 0)
-                std::cout << " is in map" << std::endl;
+                std::cout << i << " is in map" << std::endl;
         }
-        (void)X;
+        std::cout << "TEST W" << std::endl;
+        for (int i = 0; i < MAX_MAP_KEY; i++)
+        {
+            if (W.count(i) > 0)
+                std::cout << i << " is in map" << std::endl;
+        }
     }
 
 }
