@@ -1,0 +1,24 @@
+:construction: Makefile verbose
+
+*
+
+# Description
+- Added a print of the compile flags
+*
+
+# 
+# 50 char subject line
+#
+# 72 char wrapped description
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch satch
+# Your branch is ahead of 'origin/satch' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   Makefile
+#

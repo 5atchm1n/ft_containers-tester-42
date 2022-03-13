@@ -56,13 +56,13 @@ DEPS = ${OBJS:.o=.d}
 
 # Debug and Memory
 
-ifeq ($(TMEM),1)
+#ifeq ($(TMEM),1)
 MEM = -fsanitize=address 
-endif
+#endif
 
-ifeq ($(TDEBUG),1)
+#ifeq ($(TDEBUG),1)
 DEBUG = -fstandalone-debug -g3
-endif
+#endif
 
 ifeq ($(TCONST),0)
 CONST_TEST =
