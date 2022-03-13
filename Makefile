@@ -56,20 +56,20 @@ DEPS = ${OBJS:.o=.d}
 
 # Debug and Memory
 
-#ifeq ($(TMEM),1)
+ifeq ($(TMEM),1)
 MEM = -fsanitize=address 
-#endif
+endif
 
-#ifeq ($(TDEBUG),1)
+ifeq ($(TDEBUG),1)
 DEBUG = -fstandalone-debug -g3
-#endif
+endif
 
 ifeq ($(TCONST),0)
 CONST_TEST =
 endif
 
 # Main
-_TEST_MAIN = srcs/_test-main.cpp
+_TEST_MAIN = _test_srcs/_test-main.cpp
 
 ## INCLUDE FILES
 # Global include
@@ -80,7 +80,8 @@ OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})
 
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
-	@echo -n ${CYAN} "Create objects : \t"
+	@echo ${BLUE} "test flags" ${PURPLE} ${_TEST} ${CONST_TEST} ${RESET}
+	@echo -n ${CYAN} "Create objects :\t"
 	@${MKDIR_P} ${@D}
 	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${MEM} ${DEBUG} ${INC} $(DEBUG) ${CPPSTD} -c $< -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
@@ -155,16 +156,16 @@ ${TEST_ALL_BONUS} : ${TEST_VECTOR} ${TEST_MAP} ${TEST_STACK} ${TEST_SET}
 # Make ft_map
 ${MAP_FT} : _TEST+=-D_TMAP=1
 
-${MAP_FT} : clean ${OBJS}
-	@echo -n ${CYAN} "Make ft_map:\t" ${RESET}
+${MAP_FT} : ${OBJS}
+	@echo -n ${CYAN} "Make ft_map :\t\t" ${RESET}
 	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
 # Make std_map
 ${MAP_STD}: _TEST+=-D_NAMESPACE=std -D_TMAP=1
 
-${MAP_STD}: clean ${OBJS}
-	@echo -n ${CYAN} "Make std_map :\t" ${RESET}
+${MAP_STD}: ${OBJS}
+	@echo -n ${CYAN} "Make std_map :\t\t" ${RESET}
 	@${CC} ${CXXFLAGS} ${_TEST} ${CONST_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${OBJS} -o $@
 	@echo ${GREEN} "[ DONE ]" ${RESET}
 
