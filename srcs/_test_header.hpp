@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/14 16:30:52 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 17:34:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@
 #include <iterator>
 #include <cstdlib>
 #include <climits>
+#include <cstddef>
 
+#include "pair.hpp"
 
+#include "tools/_fake_alloc.hpp"
 #include "tools/_const_class.hpp"
 #include "tools/_test_tools.hpp"
 
