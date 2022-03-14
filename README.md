@@ -6,8 +6,11 @@ Read the README ! - [NOTES](#NOTE)
 
 Compiles using clang++ !!
 
-Modify the ```$INC``` variable in Makefile to point to your containers.
+Modify the ```$INC``` variable in [Makefile](#https://github.com/5atchm1n/ft_containers-tester-42/blob/master/Makefile) to point to your containers.
+
 Modify the `#include "pair.hpp"` in the _test_header.hpp to point to your ft::pair file 
+
+<sub>NOTE - *All test variables can be changed in the [srcs/_test_header.hpp](#https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) file*</sub>
 
 ## Intro
 
@@ -20,8 +23,6 @@ Each container can be tested seperately. Tests are split into their respective d
 </ul>
 
 Each test runs NTEST times and attempts to modify the container at most MAX_TEST_SIZE. The tests are run randomly using a unique SEED.
-
-<sub>NOTE - *These variables can be changed in the srcs/_test_header.hpp file*</sub>
 
 [Test all containers together](#FULL-TESTS-SINGLE-BINARY)
 
@@ -46,7 +47,7 @@ each containers output can be tested against the std library using the folowing 
 
 ```make test_[container]```
 
-to test vector : ``` make test_vector```
+to test vector : ```make test_vector```
 ## MODIFYING THE TESTS
 
 Each test is run MAX_SEED different times - the base SEED is 42.
