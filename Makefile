@@ -14,6 +14,8 @@ MAP_TEST = map_test
 
 VEC_TEST = vector_test
 
+STACK_TEST = stack_test
+
 VEC_FT = ft_vector
 
 VEC_STD = std_vector
@@ -22,16 +24,16 @@ MAP_FT = ft_map
 
 MAP_STD = std_map
 
+STACK_FT = ft_stack
+
+STACK_STD = std_stack
+
 # Compiler directives
 
 CC = clang++
 CPPSTD = -std=c++98
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror
 
-# Debug and Memory
-
-MEM = -fsanitize=address 
-DEBUG = -fstandalone-debug -g3
 
 # Makefile recipe specific Rules
 

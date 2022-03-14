@@ -1,9 +1,10 @@
-#ifndef _MAP_TEST_HEADER_HPP
-#define _MAP_TEST_HEADER_HPP
+#ifndef _STACK_TEST_HEADER_HPP
+#define _STACK_TEST_HEADER_HPP
 
-#include "map.hpp"
+#include "stack.hpp"
 #include <string>
-#include <map>
+#include <stack>
+#include <vector>
 #include <iterator>
 #include <cstdlib>
 #include <climits>
@@ -15,21 +16,15 @@
 
 // random number seed
 #define _SEED 42
+// max number of seeds to test
+#define MAX_SEED 100
 
 // Total number of cases
-#define _TEST_NB 11
-// Test cases
+#define _TEST_NB 5
 #define _DEFAULT_CONSTRUCTOR 0
-#define _COPY_CONSTRUCTOR 1
-#define _ASSIGNMENT_OP 2
-#define _INSERT 3
-#define _ERASE 4
-#define _CLEAR 5
-#define _ARRINDEX_OP 6
-#define _BOUNDS 7
-#define _FAKE_ALLOCATOR 8
-#define _SWAP 9
-#define _OTHER_OPS 10
+#define _REL_OP 1
+#define _PUSH 2
+#define _POP 3
 
 // MAX amount of values to assign/insert
 #define _MAX_TEST_SIZE 21
@@ -41,4 +36,4 @@
 #include "_test_tools.hpp"
 #include "_test.hpp"
 
-#endif 
+#endif

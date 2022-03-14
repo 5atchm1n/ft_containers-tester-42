@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   _test_tools.hpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/11 19:53:06 by atruphem         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <string>
 #include <climits>
 
@@ -85,8 +73,7 @@ namespace _test
         return ft::pair<const int, std::string>(rdm_val<int>(), rdm_val<std::string>());
     }
 
-// Fake allocator
-template<typename _Tp>
+    template<typename _Tp>
     class lolocator : public std::allocator<_Tp>
     {
    public:
@@ -128,4 +115,4 @@ template<typename _Tp>
 
 }
 
-#endif  //_MAP_TEST_TOOLS_HPP
+#endif

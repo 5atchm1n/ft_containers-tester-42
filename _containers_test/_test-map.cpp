@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   _test-map.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: atruphem <atruphem@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 03:34:44 by sshakya          #+#    #+#             */
-/*   Updated: 2022/03/07 16:37:46 by atruphem         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "map_test/_test_header.hpp"
 
 template <class _map>
 void test_map(int rdm_seed)
 {
     std::srand(rdm_seed);
-    void (*_test_main[])(_map &, _map &) =
+    void (*_test_list[])(_map &, _map &) =
         {
             &_test::test_constructors,
             &_test::test_copy,
@@ -26,7 +14,9 @@ void test_map(int rdm_seed)
             &_test::test_clear,
             &_test::test_arrindex_op,
             &_test::test_bounds,
-            &_test::test_fakeallocator
+            &_test::test_fakeallocator,
+            &_test::test_swap,
+            &_test::test_other_ops
         };
 
     _map X;
@@ -35,63 +25,72 @@ void test_map(int rdm_seed)
     for (int i = 0; i < _NTESTS; i++)
     {
         std::cout << "TEST : " << main_test_no++ << std::endl;
-        switch (std::rand() % _TEST_MAIN)
+        switch (std::rand() % _TEST_NB)
         {
         case (_DEFAULT_CONSTRUCTOR):
             if (std::rand() % 2)
-                _test_main[_DEFAULT_CONSTRUCTOR](X, Y);
+                _test_list[_DEFAULT_CONSTRUCTOR](X, Y);
             else
-                _test_main[_DEFAULT_CONSTRUCTOR](Y, X);
+                _test_list[_DEFAULT_CONSTRUCTOR](Y, X);
             break;
         case (_COPY_CONSTRUCTOR):
             if (std::rand() % 2)
-                _test_main[_COPY_CONSTRUCTOR](X, Y);
+                _test_list[_COPY_CONSTRUCTOR](X, Y);
             else
-                _test_main[_COPY_CONSTRUCTOR](Y, X);
+                _test_list[_COPY_CONSTRUCTOR](Y, X);
             break;
         case (_ASSIGNMENT_OP):
             if (std::rand() % 2)
-                _test_main[_ASSIGNMENT_OP](X, Y);
+                _test_list[_ASSIGNMENT_OP](X, Y);
             else
-                _test_main[_ASSIGNMENT_OP](Y, X);
+                _test_list[_ASSIGNMENT_OP](Y, X);
             break;
         case (_INSERT):
             if (std::rand() % 2)
-                _test_main[_INSERT](X, Y);
+                _test_list[_INSERT](X, Y);
             else
-                _test_main[_INSERT](Y, X);
+                _test_list[_INSERT](Y, X);
             break;
         case (_ERASE):
             if (std::rand() % 2)
-                _test_main[_ERASE](X, Y);
+                _test_list[_ERASE](X, Y);
             else
-                _test_main[_ERASE](Y, X);
+                _test_list[_ERASE](Y, X);
             break;
         case (_CLEAR):
-            _test_main[_CLEAR](X, Y);
+            _test_list[_CLEAR](X, Y);
             break;
         case (_ARRINDEX_OP):
             if (std::rand() % 2)
-                _test_main[_ARRINDEX_OP](X, Y);
+                _test_list[_ARRINDEX_OP](X, Y);
             else
-                _test_main[_ARRINDEX_OP](Y, X);
+                _test_list[_ARRINDEX_OP](Y, X);
             break;
         case (_BOUNDS):
             if (std::rand() % 2)
-                _test_main[_BOUNDS](X, Y);
+                _test_list[_BOUNDS](X, Y);
             else
-                _test_main[_BOUNDS](Y, X);
+                _test_list[_BOUNDS](Y, X);
             break;
         case (_FAKE_ALLOCATOR):
-            _test_main[_FAKE_ALLOCATOR](X, Y);
+            _test_list[_FAKE_ALLOCATOR](X, Y);
             break;
-
+        case (_SWAP):
+            if (std::rand() % 2)
+                _test_list[_SWAP](X, Y);
+            else
+                _test_list[_SWAP](Y, X);
+            break;
+        case (_OTHER_OPS):
+            if (std::rand() % 2)
+                _test_list[_OTHER_OPS](X, Y);
+            else
+                _test_list[_OTHER_OPS](Y, X);
+            break;
         }
         _test::test_print(X);
         _test::test_print(Y);
     }
-
-
 }
 
 int main(void)

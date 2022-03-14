@@ -3,28 +3,31 @@
 #include <fstream>
 #include <iostream>
 
-#ifndef _VECTOR_TEST_TOOLS_HPP
-#define _VECTOR_TEST_TOOLS_HPP
+#ifndef _STACK_TEST_TOOLS_HPP
+#define _STACK_TEST_TOOLS_HPP
 
 namespace _test
 {
-    template <typename _vector>
-    void test_print(const _vector &v)
+    template <typename _stack>
+    void test_fill(_stack &v)
     {
-        std::cout << "empty : " << v.empty() << std::endl;
-        std::cout << "size : " << v.size() << std::endl;
-        std::cout << "capacity : " << v.capacity() << std::endl;
-        if (!v.empty())
+        for (int i = 0; i < _MAX_TEST_SIZE; i++)
+            v.push(rdm_val <std::string>);
+    }
+
+    template <typename _stack>
+    void test_print(_stack &v)
+    {
+        for (int i = 0; i < v.size(); i++)
         {
-            std::cout << "front : " << v.front() << std::endl;
-            std::cout << "back : " << v.back() << std::endl;
-            std::cout << "content : " << std::endl;
-            for (typename _vector::const_iterator it = v.begin(); it != v.end(); it++)
-                std::cout << *it << std::endl;
-            std::cout << "reverse content : " << std::endl;
-            for (typename _vector::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++)
-                std::cout << *it << std::endl;
+            std::cout << v.top() << std::endl;
+            v.pop();
         }
+    }
+
+    class vect_proxy : std::vector<std::string>
+    {
+        vect_proxy() {std::cout << "test ok" << std::endl;}
     }
 
     template <typename _Type>
