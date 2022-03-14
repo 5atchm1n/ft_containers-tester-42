@@ -3,6 +3,10 @@
 ## VARIABLES
 # Makefile Rules
 
+## INCLUDE FILES
+# Global include
+INC = -I../containers
+
 ## RUN COMPARE TESTS
 TEST_MAP = test_map
 TEST_VECTOR = test_vector
@@ -71,9 +75,7 @@ endif
 # Main
 _TEST_MAIN = srcs/_test-main.cpp
 
-## INCLUDE FILES
-# Global include
-INC = -I../containers
+
 
 ## OBJS DIR recipe
 OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})

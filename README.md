@@ -1,13 +1,16 @@
 # 42 FT_CONTAINERS TESTER
 ## A basic unit test for the 42 containers project
-
 #### STEP - 1
-Read the README !
+
+Read the README ! - [NOTES](#NOTE)
 
 Compiles using clang++ !!
 
-Modify the ```$INC``` variable in Makefile to point to your containers.
-Modify the `#include "pair.hpp"` in the _test_header.hpp to point to your ft::pair file 
+Modify the ```$INC``` variable in [Makefile](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/Makefile) to point to your containers.
+
+Modify the `#include "pair.hpp"` in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) to point to your ft::pair file 
+
+<sub>NOTE - *All test variables can be changed in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) file*</sub>
 
 ## Intro
 
@@ -19,36 +22,16 @@ Each container can be tested seperately. Tests are split into their respective d
 <li> set_test
 </ul>
 
-Each test runs NTEST times and attempts to modify the container at most MAX_TEST_SIZE. The tests are run randomly using a unique seed to enable diff tests. The basic make commands ```all``` and ```bonus``` will compile the mandatory and bonus tests respectively.
+Each test runs NTEST times and attempts to modify the container at most MAX_TEST_SIZE. The tests are run randomly using a unique SEED.
 
-<sub>*These variables can be changed in the srcs/_test_header.hpp file*</sub>
+[Test all containers together](#FULL-TESTS-SINGLE-BINARY)
 
-To test the binaries output (std vs ft) run ```make test``` and suprise suprise to test the bonuses output
-run ```make test_bonus```. These will run tests on all the containers simultaneously. Please read the section below to compile individual tests.
-
-If any of the tests fail Make will throw an error but still proceed
-
-To run tests on all the binaries seperately run ```make test_all``` and ```make test_all_bonus``` this will run all the tests seperately and allow you to run the time commands to check the execution time.
-
-Logs are output to the log directory and all tests are run with -fsanitize=address and -fstandalone-debug
-
-<sub>*this can be changed please read NOTES section*</sub>
-
-### RUNNING DIFF TESTS
-
-<sub>*A full list of the rules is provided below*</sub>
-
-each containers output can be tested against the std library using the folowing syntax :
-
-```make test_[container]```
-
-to test vector : ``` make test_vector```
+[Test all containers seperately](#FULL-TEST-SEPERATE-BINARIES)
 
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
 <sub> <b>NOTICE - as of now you must run make clean between commands </b> </sub>
-
-<sub>*A full list of the rules is provided below*</sub>
+<sub>*A [full list](#COMMANDS) of the rules is provided below*</sub>
 
 each container can be compiled and tested using the following syntax :
 
@@ -60,7 +43,12 @@ so to test ft vector you would excute :
 
 ```make std_vector``` would then generate the **std_vector** binary.
 
-### MODIFYING THE TESTS
+each containers output can be tested against the std library using the folowing syntax :
+
+```make test_[container]```
+
+to test vector : ```make test_vector```
+## MODIFYING THE TESTS
 
 Each test is run MAX_SEED different times - the base SEED is 42.
 
@@ -75,9 +63,24 @@ example for vector :
 ![scrnsht2](https://user-images.githubusercontent.com/61289826/158005653-54339d4f-d99d-497d-b0a6-cec9c4b7c27d.png)
 
 Feel free to add tests and remove tests to suit your build needs
+#### FULL TESTS - SINGLE BINARY
 
-## BASIC USE
-### RUN TESTS
+The basic make commands ```all``` and ```bonus``` will compile the mandatory and bonus tests respectively.
+
+To run diff tests (std vs ft) run ```make test``` and suprise suprise to test the bonuses output
+run ```make test_bonus```. These will run tests on all the containers simultaneously. Please read the sections below to compile individual tests.
+
+#### FULL TESTS - SEPERATE BINARIES
+
+To run diff tests on all the binaries seperately run ```make test_all``` and ```make test_all_bonus``` this will run all the tests seperately and allow you to run the time commands to check the execution time.
+
+If any of the tests fail Make will throw an error and stop.
+
+Logs are output to the log directory and all tests are run with -fsanitize=address and -fstandalone-debug
+
+<sub>*this can be changed please read NOTES section*</sub>
+## COMMANDS
+#### FULL PROJECT TESTING
 
 ```make```              generate ft and std binaries (mandatory)
 
@@ -99,6 +102,7 @@ Feel free to add tests and remove tests to suit your build needs
 
 ```make time_bonus```  after ```make test_all_bonus```
 
+### INDIVIDUAL CONTAINERS TESTS
 #### VECTOR
 
 ```make ft_vector``` to create ft::vector executable
