@@ -8,7 +8,7 @@ Compiles using clang++ !!
 
 Modify the ```$INC``` variable in [Makefile](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/Makefile) to point to your containers.
 
-Modify the `#include "pair.hpp"` in the _test_header.hpp to point to your ft::pair file 
+Modify the `#include "pair.hpp"` in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) to point to your ft::pair file 
 
 <sub>NOTE - *All test variables can be changed in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) file*</sub>
 
