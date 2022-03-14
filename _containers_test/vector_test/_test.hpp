@@ -8,32 +8,38 @@ namespace _test
     template <typename _vector>
     void test_constructors(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - CONSTRUCTORS" << std::endl;
+        std::cout << "TEST - CONSTRUCTORS" << std::endl;
         switch (std::rand() % 3)
         {
-            case (0):
-                std::ifstream source("Makefile", std::ios::binary);
+            case(0):
+            {    
+                std::ifstream source("_containers_test/vector_test/test.cf", std::ios::binary);
                 _NAMESPACE::vector<char> Z((std::istreambuf_iterator<char>(source)), std::istreambuf_iterator<char>());
                 source.close();
                 test_print(Z);
                 break;
-            case (1):
-                _vector Z = _vector(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
-                test_print(Z);
-            case (2):
-                _vector Z = _vector(X.begin(), X.end());
-                _vector K = _vector(Y.begin(), Y.end());
-                test_print(Z);
+            }
+            case(1):
+            {
+                _vector K = _vector(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
                 test_print(K);
+                break;
+            }
+            case(2):
+            {
+                _vector U = _vector(X.begin(), X.end());
+                _vector W = _vector(Y.begin(), Y.end());
+                test_print(U);
+                test_print(W);
+                break;
+            }
         }
     }
 
     template <typename _vector>
     void test_copy(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - COPY CONSTRUCTOR" << std::endl;
+        std::cout << "TEST - COPY CONSTRUCTOR" << std::endl;
         _vector Z(X);
         _vector K(Y);
         test_print(Z);
@@ -43,25 +49,22 @@ namespace _test
     template <typename _vector>
     void test_assign_op(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - OPERATOR=" << std::endl;
+        std::cout << "TEST - OPERATOR=" << std::endl;
         X = Y;
     }
 
     template <typename _vector>
     void test_resize(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - RESIZE" << std::endl;
-            x.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
-            y.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+        std::cout << "TEST - RESIZE" << std::endl;
+            X.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+            Y.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
     }
 
     template <typename _vector>
     void test_swap(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - RESIZE" << std::endl;
+        std::cout << "TEST - SWAP" << std::endl;
         if (std::rand() % 2)
             X.swap(Y);
         else
@@ -71,6 +74,7 @@ namespace _test
     template <typename _vector>
     void test_relational_op(_vector &X, _vector &Y)
     {
+        std::cout << "TEST - RELATIONAL OP" << std::endl;
         _vector Z;
         Z.insert(Z.begin(), _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
         _vector K = _vector(Z);
@@ -88,8 +92,7 @@ namespace _test
     template <typename _vector>
     void test_insert(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - INSERT" << std::endl;
+        std::cout << "TEST - INSERT" << std::endl;
         typename _vector::iterator it;
         if (!X.empty())
             it = X.begin() + std::rand() % X.size();
@@ -105,8 +108,8 @@ namespace _test
                 case (1):
                     if (!X.empty() && !Y.empty())
                         Y.insert(Y.begin() + (std::rand() % Y.size()), it, it + (std::rand() % (X.size() - (it - X.begin()))));
-                    else if (!y.empty())
-                        Y.insert(y.begin() + (std::rand() % Y.size()), it, X.end());
+                    else if (!Y.empty())
+                        Y.insert(Y.begin() + (std::rand() % Y.size()), it, X.end());
                     else
                         Y.insert(Y.begin(), it, X.end());
                     break;
@@ -128,8 +131,7 @@ namespace _test
     void test_assign(_vector &X, _vector &Y)
     {
         _vector Z;
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - ASSIGN" << std::endl;
+        std::cout << "TEST - ASSIGN" << std::endl;
         switch (std::rand() % 4)
         {
             case (0) :
@@ -154,8 +156,7 @@ namespace _test
     template <typename _vector>
     void test_push(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - PUSH_BACK" << std::endl;
+        std::cout << "TEST - PUSH_BACK" << std::endl;
         switch (std::rand() % 3)
         {
             case (0) :
@@ -175,8 +176,7 @@ namespace _test
     template <typename _vector>
     void test_pop(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - POP" << std::endl;
+        std::cout << "TEST - POP" << std::endl;
         switch (std::rand() % 2)
         {
             case (0):
@@ -193,8 +193,7 @@ namespace _test
     template <typename _vector>
     void test_erase(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - ERASE" << std::endl;
+        std::cout << "TEST - ERASE" << std::endl;
         typename _vector::iterator pos;
         switch (std::rand() % 4)
         {
@@ -222,8 +221,7 @@ namespace _test
     template <typename _vector>
     void test_clear(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - CLEAR" << std::endl;
+        std::cout << "TEST - CLEAR" << std::endl;
         if (std::rand() % 2)
             X.clear();
         else
@@ -233,13 +231,13 @@ namespace _test
     template <typename _vector>
     void test_reserve(_vector &X, _vector &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - CLEAR" << std::endl;
-        X.reserve(std::rand() % (_MAX_TEST_SIZE * 2));
-        Y.reserve(std::rand() % (_MAX_TEST_SIZE * 2));
-        std::cout << X.capacity() << "--" << Y.capacity() << std::endl;
+        std::cout << "TEST - RESERVE" << std::endl;
+        int Xcap = X.capacity();
+        int Ycap = Y.capacity();
+        X.reserve(X.capacity() + 8);
+        Y.reserve(Y.capacity() + 8);
+        std::cout << X.capacity() - Xcap << "--" << Y.capacity() - Ycap << std::endl;
     } 
-}
 }
 
 

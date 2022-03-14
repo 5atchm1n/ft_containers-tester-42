@@ -38,7 +38,7 @@
 #define _MAX_TEST_SIZE 21
 
 // Number of iterations of test suite
-#define _NTESTS 1000
+#define _NTESTS 100
 
 // Tests
 #include "_test_tools.hpp"

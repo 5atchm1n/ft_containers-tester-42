@@ -13,7 +13,6 @@ namespace _test
     {
         std::cout << "empty : " << v.empty() << std::endl;
         std::cout << "size : " << v.size() << std::endl;
-        std::cout << "capacity : " << v.capacity() << std::endl;
         if (!v.empty())
         {
             std::cout << "front : " << v.front() << std::endl;

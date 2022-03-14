@@ -9,7 +9,7 @@ void test_vector(int rdm_seed)
             &_test::test_constructors,
             &_test::test_copy,
             &_test::test_assign_op,
-            &_test::test_relational_op
+            &_test::test_relational_op,
             &_test::test_insert,
             &_test::test_assign,
             &_test::test_push,
@@ -26,7 +26,6 @@ void test_vector(int rdm_seed)
 
     for (int i = 0; i < _NTESTS; i++)
     {
-        std::cout << "TEST : " << main_test_no++ << std::endl;
         switch (std::rand() % _TEST_NB)
         {
         case (_DEFAULT_CONSTRUCTOR):

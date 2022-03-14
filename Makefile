@@ -1,7 +1,7 @@
 
 ## INCLUDE FILES
 
-INC = -I ..
+INC = -I ../contt
 
 ## VARIABLES
 # Makefile Rules
@@ -109,7 +109,7 @@ ${VEC_STD} : ${VEC_TEST}
 # TEST VECTOR
 # generate vector exectutable
 
-${VEC_TEST} : fclean ${_VEC_TEST_OBJS}
+${VEC_TEST} : clean ${_VEC_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
 # STACK
@@ -124,7 +124,7 @@ ${STACK_STD}: ${STACK_TEST}
 # TEST STACK
 # generate stack exectutable
 
-${STACK_TEST} : fclean ${_STACK_TEST_OBJS}
+${STACK_TEST} : clean ${_STACK_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_STACK_TEST_OBJS} -o $@
 
 
