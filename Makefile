@@ -73,7 +73,7 @@ _TEST_MAIN = srcs/_test-main.cpp
 
 ## INCLUDE FILES
 # Global include
-INC = -I./containers
+INC = -I../containers
 
 ## OBJS DIR recipe
 OBJS = $(addprefix ${OBJDIR}/, ${_TEST_MAIN:.cpp=.o})

@@ -4,7 +4,10 @@
 #### STEP - 1
 Read the README !
 
-Modify the ```$INC``` variable in Makefile to point to your containers
+Compiles using clang++ !!
+
+Modify the ```$INC``` variable in Makefile to point to your containers.
+Modify the `#include "pair.hpp"` in the _test_header.hpp to point to your ft::pair file 
 
 ## Intro
 
@@ -31,9 +34,19 @@ Logs are output to the log directory and all tests are run with -fsanitize=addre
 
 <sub>*this can be changed please read NOTES section*</sub>
 
+### RUNNING DIFF TESTS
+
+<sub>*A full list of the rules is provided below*</sub>
+
+each containers output can be tested against the std library using the folowing syntax :
+
+```make test_[container]```
+
+to test vector : ``` make test_vector```
+
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
-<sub> <b>NOTICE - as of now you must run make clean between commands </br> </sub>
+<sub> <b>NOTICE - as of now you must run make clean between commands </b> </sub>
 
 <sub>*A full list of the rules is provided below*</sub>
 
@@ -45,18 +58,7 @@ so to test ft vector you would excute :
 
 ```make ft_vector``` and this would generate the **ft_vector** binary.
 
-
 ```make std_vector``` would then generate the **std_vector** binary.
-
-### RUNNING DIFF TESTS
-
-<sub>*A full list of the rules is provided below*</sub>
-
-each containers output can be tested against the std library using the folowing syntax :
-
-```make test_[container]```
-
-to test vector : ``` make test_vector```
 
 ### MODIFYING THE TESTS
 
