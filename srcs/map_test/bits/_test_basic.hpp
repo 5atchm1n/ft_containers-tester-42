@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/13 01:15:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 15:39:35 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,22 +168,41 @@ namespace _test_map
         std::cout << " - COUNT" << std::endl;
         
         _map Z(Y);
-        _map W(X);
 
-        std::cout << "TEST Z" << std::endl;
         for (int i = 0; i < MAX_MAP_KEY; i++)
         {
+            std::cout << i ;
             if (Z.count(i) > 0)
-                std::cout << i << " is in map" << std::endl;
+                std::cout << " is in map" << std::endl;
+            else
+                std::cout << std::endl;
         }
-        std::cout << "TEST W" << std::endl;
-        for (int i = 0; i < MAX_MAP_KEY; i++)
-        {
-            if (W.count(i) > 0)
-                std::cout << i << " is in map" << std::endl;
-        }
+        (void)X;
     }
 
+    template <typename _map>
+    void test_fakeallocator(_map &X, _map &Y)
+    {
+        std::cout << "TEST : " << mtest_no++;
+        std::cout << " - FAKE ALLOCATOR" << std::endl;
+        try
+        {
+            if(!Y.empty())
+            {
+                _NAMESPACE::map<int,std::string,std::less<int>, lolocator<_NAMESPACE::pair<int, std::string> > > K(Y.begin(), Y.end(), std::less<int>(), lolocator<_NAMESPACE::pair<int, std::string> >());
+                test_print(K);
+            }
+            if(!X.empty())
+            {
+                _NAMESPACE::map<int,std::string,std::less<int>, lolocator<_NAMESPACE::pair<int, std::string> > > Z(X.begin(), X.end(), std::less<int>(), lolocator<_NAMESPACE::pair<int, std::string> >());
+                test_print(Z);
+            }
+        }
+        catch (std::exception &error)
+        {
+            std::cout << "Vade retro fake allocator" << std::endl;
+        }
+    }   
 }
 
 #endif  //_VECTOR_TEST_BASIC_HPP

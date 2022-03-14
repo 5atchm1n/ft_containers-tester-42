@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 01:53:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 15:37:07 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../../_test_header.hpp"
 
 // Total number of cases
-#define M_TEST_MAIN 10
+#define M_TEST_MAIN 11
 // Test cases
 #define M_DEFAULT_CONSTRUCTOR 0
 #define M_OPERATOR 1
@@ -28,6 +28,7 @@
 #define M_ITERATORS 7
 #define M_SWAP 8
 #define M_COUNT 9
+#define M_ALLOC 10
 
 // For debugging
 static int mtest_no = 0;
