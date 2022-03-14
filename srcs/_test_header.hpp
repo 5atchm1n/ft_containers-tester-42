@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/13 04:44:01 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:30:52 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,29 @@
 #include <cstdlib>
 #include <climits>
 
-#include <vector>
-#include <map>
-#include <stack>
-#include <set>
-#include "vector.hpp"
-#include "map.hpp"
-#include "stack.hpp"
-#include "set.hpp"
 
 #include "tools/_const_class.hpp"
 #include "tools/_test_tools.hpp"
 
+#include <vector>
+#include <map>
+#include <stack>
+#include <set>
+#if _TVECTOR
+#include "vector.hpp"
 #include "vector_test/_test-vector.cpp"
+#endif
+#if _TMAP
+#include "map.hpp"
 #include "map_test/_test-map.cpp"
+#endif
+#if _TSTACK
+#include "stack.hpp"
 #include "stack_test/_test-stack.cpp"
+#endif
+#if _TSET
+#include "set.hpp"
 #include "set_test/_test-set.cpp"
+#endif
 
 #endif
