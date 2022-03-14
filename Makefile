@@ -1,14 +1,10 @@
-### MAKEFILE FOR CONTAINERS
 
 ## INCLUDE FILES
-# Global include
 
 INC = -I ..
 
 ## VARIABLES
 # Makefile Rules
-
-NAME = ft_containers
 
 MAP_TEST = map_test
 
@@ -53,61 +49,50 @@ RESET="\033[m"
 
 
 ## SOURCE FILES
-# Default
-SRC = _containers_test/main3.cpp
 # Map
 _MAP_TEST = _containers_test/_test-map.cpp
 # Vector
 _VEC_TEST = _containers_test/_test-vector.cpp
+# Stack
+_STACK_TEST = _containers_test/_test-stack.cpp
 # END
-
-
-# custom include
-_INC_RBT_TEST = -I./containers/map/rbtree
-
-## DEPENDECIES recipe
-DEPS = ${OBJS:.o=.d}
-VEC_DEPS = ${_VEC_TEST_OBJS:.o=.d}
 
 ## OBJS DIR recipe
 OBJS = $(addprefix ${OBJDIR}/, ${SRC:.cpp=.o})
 _VEC_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_VEC_TEST:.cpp=.o})
-_RBT_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_RBT_TEST:.cpp=.o})
 _MAP_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_MAP_TEST:.cpp=.o})
+_STACK_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_STACK_TEST:.cpp=.o}) 
 
 # GLOBAL MAKE ALL
 
 all : ${NAME}
 # default recipe
 ${NAME} : ${OBJS}
-	${CC} ${CFLAGS} ${INC} ${MEM} ${CPPSTD} ${OBJS} -o $@
+	${CC} ${CFLAGS} ${INC} ${CPPSTD} ${OBJS} -o $@
 
 # object file recipe
 ${OBJDIR}/%.o:%.cpp
 	@${MKDIR_P} ${@D}
-	${CC} ${CFLAGS} ${_TEST} ${INC} $(DEBUG) $(_INC_RBT_TEST) ${MEM} ${CPPSTD} -c $< -o $@
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} -c $< -o $@
 
 # END GLOBAL ALL
-
-# TEST RED BLACK TREE
-# generate tree exectutable
-${RBT_TEST} : fclean ${_RBT_TEST_OBJS}
-	${CC} ${CFLAGS} ${_INC_RBT_TEST} ${MEM} ${CPPSTD} ${_RBT_TEST_OBJS} -o $@
 
 # MAP
 
 ${MAP_FT} : ${MAP_TEST}
+	mv ${MAP_TEST} ${MAP_FT}
 
 ${MAP_STD}: _TEST=-D_NAMESPACE=std
 
 ${MAP_STD}: ${MAP_TEST}
+	mv ${MAP_TEST} ${MAP_STD}
 
 
 # TEST MAP
 # generate map exectutable
 
 ${MAP_TEST} : fclean ${_MAP_TEST_OBJS}
-	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_MAP_TEST_OBJS} -o $@
 
 
 # VECTOR
@@ -121,37 +106,31 @@ ${VEC_STD} : _TEST=-D_NAMESPACE=std
 ${VEC_STD} : ${VEC_TEST}
 	mv ${VEC_TEST} ${VEC_STD}
 
-# VECTOR
+# TEST VECTOR
 # generate vector exectutable
 
-${VEC_TEST} : clean ${_VEC_TEST_OBJS}
-	${CC} ${CFLAGS} ${_TEST} ${INC} ${MEM} ${DEBUG} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
+${VEC_TEST} : fclean ${_VEC_TEST_OBJS}
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_VEC_TEST_OBJS} -o $@
 
-LOG_DIR = log
-BIN_DIR = bin
-TEST_VECTOR = test_vector
+# STACK
 
-${TEST_VECTOR} :
-	@echo ${BLUE} "\n\t RUN VECTOR TESTS" ${RESET}
-	@echo ${CYAN} "Make std_vector :\t" ${RESET}
-	@make -s ${VEC_STD}
-	@echo ${GREEN} "[ OK ]" ${RESET}
-	@${MKDIR_P} ${LOG_DIR} 
-	@echo -n ${YELLOW} " RUN TEST - STD\t" ${RESET}
-	@-./${VEC_STD} > ${LOG_DIR}/std.out
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo ${CYAN} "Make ft_vector:\t" ${RESET}
-	@make -s ${VEC_FT}
-	@echo ${GREEN} "[ OK ]" ${RESET}
-	@echo -n ${YELLOW} " RUN TEST - FT\t\t" ${RESET}
-	@-./${VEC_FT} > ${LOG_DIR}/ft.out 2> ${LOG_DIR}/mem.out
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo -n ${YELLOW} "checking diff\t\t" ${RESET}
-	@-diff -u ${LOG_DIR}/std.out ${LOG_DIR}/ft.out > ${LOG_DIR}/diff.log
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-	@echo ${BLUE} "\n\tcheck log dir for output" ${RESET}
+${STACK_FT} : ${STACK_TEST}
 
-# VECTOR END
+${STACK_STD}: _TEST=-D_NAMESPACE=std
+
+${STACK_STD}: ${STACK_TEST}
+
+
+# TEST STACK
+# generate stack exectutable
+
+${STACK_TEST} : fclean ${_STACK_TEST_OBJS}
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_STACK_TEST_OBJS} -o $@
+
+
+# COMMON RULES
+re : fclean all
+
 
 # COMMON RULES
 re : fclean all
