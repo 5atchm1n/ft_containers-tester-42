@@ -6,14 +6,14 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 05:37:50 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:29:54 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _VECTOR_HEADER_HPP
 #define _VECTOR_HEADER_HPP
 
-#include "_test_header.hpp"
+#include "../../_test_header.hpp"
 
 // Total number of cases
 #define _VECTOR_NTESTS 13

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/13 01:07:45 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:31:44 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ rdm_val<ft::_const_test<int> >()
     return (ft::_const_test<int>(rdm_val<int>()));
 }
 
+#if _TMAP
 template <>
 std::pair<const int, std::string>
 rdm_val<std::pair<const int, std::string> >()
@@ -90,5 +91,6 @@ rdm_val<ft::pair<const int, std::string> >()
 {
     return ft::pair<const int, std::string>(rdm_val<int>(), rdm_val<std::string>());
 }
+#endif
 
 #endif //_TEST_TOOLS_HPP
