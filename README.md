@@ -46,7 +46,7 @@ to test vector : ``` make test_vector```
 
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING
 
-<sub> <b>NOTICE - as of now you must run make clean between commands </br> </sub>
+<sub> <b>NOTICE - as of now you must run make clean between commands </b> </sub>
 
 <sub>*A full list of the rules is provided below*</sub>
 
