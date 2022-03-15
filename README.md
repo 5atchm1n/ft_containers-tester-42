@@ -102,10 +102,10 @@ Logs are output to the log directory and all tests are run with -fsanitize=addre
 #### VARIABLES
 you can enable and disable certain tests at compile time by running the make command using certain variables.
 <ul>
-<li> TMEM - removes -fsanitize=address </li>
-<li> TDEBUG - removes -fstandalone-debug </li>
-<li> TCONST - removes const only tests </li>
-<li> LOG - output diff to stdout and file (no seperate logs)</li>
+<li> <b>TMEM</b> - removes -fsanitize=address </li>
+<li> <b>TDEBUG</b> - removes -fstandalone-debug </li>
+<li> <b>TCONST</b> - removes const only tests </li>
+<li> <b>LOG</b> - output diff to stdout and file (no seperate logs)</li>
 </ul>
 these variables can be used together ex:
 ```make <rule_name> TMEM=0 TCONST=0 LOG=0```
