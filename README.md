@@ -25,7 +25,8 @@ Each test runs NTEST times and attempts to modify the container at most MAX_TEST
 ### COMPILING INDIVIDUAL TESTS FOR DEBUGGING  
 <sub> <b>NOTICE - as of now you must run make clean between commands </b> </sub>  
 <sub>*A [full list](#COMMANDS) of the rules is provided below*</sub>  
-<sub> Please check [makefile variables](#VARIABLES) </sub>  
+<sub> Please check [makefile variables](#VARIABLES) </sub>
+
 each container can be compiled and tested using the following syntax :
 
 ```make [name]_[container]```  
