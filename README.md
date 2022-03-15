@@ -26,13 +26,20 @@ Each test runs NTEST times and attempts to modify the container at most MAX_TEST
 <sub> <b>NOTICE - as of now you must run make clean between commands </b> </sub>  
 <sub>*A [full list](#COMMANDS) of the rules is provided below*</sub>  
 <sub> Please check [makefile variables](#VARIABLES) </sub>  
-each container can be compiled and tested using the following syntax :  
+each container can be compiled and tested using the following syntax :
+
 ```make [name]_[container]```  
+
 so to test ft vector you would excute :  
+
 ```make ft_vector``` and this would generate the **ft_vector** binary.  
+
 ```make std_vector``` would then generate the **std_vector** binary.  
+
 each containers output can be tested against the std library using the folowing syntax :  
+
 ```make test_[container]```  
+
 to test vector : ```make test_vector```
 ## MODIFYING THE TESTS
 
