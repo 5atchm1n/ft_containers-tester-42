@@ -109,6 +109,7 @@ you can enable and disable certain tests at compile time by running the make com
 <li> <b>LOG</b> - output diff to stdout and file (no seperate logs)</li>
 </ul>
 these variables can be used together ex:
+
 ```make <rule_name> TMEM=0 TCONST=0 LOG=0```
 
 #### NOTE - to editors
