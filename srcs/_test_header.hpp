@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/15 02:36:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 04:29:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 #define MAX_SEED 8
 
 // Number of iterations of test suite
-#define _NTESTS 2048
+#define _NTESTS 1024
 
 #define MAX_TEST_SIZE 512
 #define MAX_MAP_KEY 1024

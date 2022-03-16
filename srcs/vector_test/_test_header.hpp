@@ -6,39 +6,45 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/14 16:29:54 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 03:38:13 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _VECTOR_HEADER_HPP
 #define _VECTOR_HEADER_HPP
 
-#include "../../_test_header.hpp"
+#include "../_test_header.hpp"
 
 // Total number of cases
-#define _VECTOR_NTESTS 13
+#define _VECTOR_NTESTS 12
 // Test cases
 #define V_BASIC_C 0
-#define V_COPY_C 1
-#define V_ASSIGN_OP 2
-#define V_MIXED_0_3 3
-#define V_REL_OP 4
-#define V_INSERT 5
-#define V_ASSIGN 6
-#define V_PUSH 7
-#define V_POP 8
-#define V_ERASE 9
-#define V_RESIZE 10
-#define V_SWAP 11
-#define V_CLEAR 12
+#define V_ASSIGN_OP 1
+#define V_MIXED_0_3 2
+#define V_REL_OP 3
+#define V_INSERT 4
+#define V_ASSIGN 5
+#define V_PUSH 6
+#define V_POP 7
+#define V_ERASE 8
+#define V_RESIZE 9
+#define V_SWAP 10
+#define V_CLEAR 11
 
 // For debugging
 static int vtest_no = 0;
 static int vmain_test_no = 0;
 
 // Tests
-#include "_test_tools.hpp"
-#include "_test_basic.hpp"
-#include "_test_modify.hpp"
+#include "tests/_test_tools.hpp"
+#include "tests/_test_assign.hpp"
+#include "tests/_test_insert.hpp"
+#include "tests/_test_basic.hpp"
+#include "tests/_test_push_pop.hpp"
+#include "tests/_test_erase_clear.hpp"
+
+#if _TCONST
+#include "tests/_test_const.hpp"
+#endif
 
 #endif  //_VECTOR_HEADER_HPP
