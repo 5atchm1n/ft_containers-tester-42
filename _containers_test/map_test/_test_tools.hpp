@@ -9,14 +9,14 @@ namespace _test
     template <typename _map>
     void test_print(const _map &M)
     {
-        std::cout << "empty : " << M.empty() << std::endl;
-        std::cout << "size : " << M.size() << std::endl;
+        std::cout << "empty: " << M.empty() << std::endl;
+        std::cout << "size: " << M.size() << std::endl;
         if (!M.empty())
         {
-            std::cout << "content : " << std::endl;
+            std::cout << "content: " << std::endl;
             for (typename _map::const_iterator it = M.begin(); it != M.end(); it++)
                 std::cout << it->first << " => " << it->second << std::endl;
-            std::cout << "reverse content : " << std::endl;
+            std::cout << "reverse content: " << std::endl;
             for (typename _map::const_reverse_iterator it = M.rbegin(); it != M.rend(); it++)
                 std::cout << it->first << " => " << it->second << std::endl;
         }

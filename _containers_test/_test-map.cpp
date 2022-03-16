@@ -24,7 +24,6 @@ void test_map(int rdm_seed)
 
     for (int i = 0; i < _NTESTS; i++)
     {
-        std::cout << "TEST : " << main_test_no++ << std::endl;
         switch (std::rand() % _TEST_NB)
         {
         case (_DEFAULT_CONSTRUCTOR):

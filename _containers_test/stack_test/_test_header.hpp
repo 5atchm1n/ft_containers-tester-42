@@ -9,22 +9,23 @@
 #include <cstdlib>
 #include <climits>
 #include <iostream>
+#include <list>
+#include <deque>
 
 #ifndef _NAMESPACE
 # define _NAMESPACE ft
 #endif
 
-// random number seed
+// seed for randomness
 #define _SEED 42
-// max number of seeds to test
 #define MAX_SEED 100
 
 // Total number of cases
-#define _TEST_NB 5
-#define _DEFAULT_CONSTRUCTOR 0
-#define _REL_OP 1
-#define _PUSH 2
-#define _POP 3
+#define _TEST_NB 4
+#define _REL_OP 0
+#define _PUSH 1
+#define _POP 2
+#define _DEFAULT_CONSTRUCTOR 3
 
 // MAX amount of values to assign/insert
 #define _MAX_TEST_SIZE 21

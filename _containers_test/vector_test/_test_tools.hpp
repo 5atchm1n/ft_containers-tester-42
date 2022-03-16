@@ -11,16 +11,16 @@ namespace _test
     template <typename _vector>
     void test_print(const _vector &v)
     {
-        std::cout << "empty : " << v.empty() << std::endl;
-        std::cout << "size : " << v.size() << std::endl;
+        std::cout << "empty: " << v.empty() << std::endl;
+        std::cout << "size: " << v.size() << std::endl;
         if (!v.empty())
         {
-            std::cout << "front : " << v.front() << std::endl;
-            std::cout << "back : " << v.back() << std::endl;
-            std::cout << "content : " << std::endl;
+            std::cout << "front: " << v.front() << std::endl;
+            std::cout << "back: " << v.back() << std::endl;
+            std::cout << "content: " << std::endl;
             for (typename _vector::const_iterator it = v.begin(); it != v.end(); it++)
                 std::cout << *it << std::endl;
-            std::cout << "reverse content : " << std::endl;
+            std::cout << "reverse content: " << std::endl;
             for (typename _vector::const_reverse_iterator it = v.rbegin(); it != v.rend(); it++)
                 std::cout << *it << std::endl;
         }

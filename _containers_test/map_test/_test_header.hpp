@@ -13,8 +13,9 @@
 # define _NAMESPACE ft
 #endif
 
-// random number seed
+// seed for randomness
 #define _SEED 42
+#define MAX_SEED 100
 
 // Total number of cases
 #define _TEST_NB 11

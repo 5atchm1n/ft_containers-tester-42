@@ -1,7 +1,7 @@
 
 ## INCLUDE FILES
 
-INC = -I ../contt
+INC = -I ..
 
 ## VARIABLES
 # Makefile Rules
@@ -11,6 +11,8 @@ MAP_TEST = map_test
 VEC_TEST = vector_test
 
 STACK_TEST = stack_test
+
+SET_TEST = set_test
 
 VEC_FT = ft_vector
 
@@ -24,11 +26,15 @@ STACK_FT = ft_stack
 
 STACK_STD = std_stack
 
+SET_FT = ft_set
+
+SET_STD = std_set
+
 # Compiler directives
 
 CC = clang++
 CPPSTD = -std=c++98
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 
 # Makefile recipe specific Rules
@@ -55,6 +61,8 @@ _MAP_TEST = _containers_test/_test-map.cpp
 _VEC_TEST = _containers_test/_test-vector.cpp
 # Stack
 _STACK_TEST = _containers_test/_test-stack.cpp
+# Set
+_SET_TEST = _containers_test/_test-set.cpp
 # END
 
 ## OBJS DIR recipe
@@ -62,6 +70,7 @@ OBJS = $(addprefix ${OBJDIR}/, ${SRC:.cpp=.o})
 _VEC_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_VEC_TEST:.cpp=.o})
 _MAP_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_MAP_TEST:.cpp=.o})
 _STACK_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_STACK_TEST:.cpp=.o}) 
+_SET_TEST_OBJS = $(addprefix ${OBJDIR}/, ${_SET_TEST:.cpp=.o})
 
 # GLOBAL MAKE ALL
 
@@ -115,10 +124,12 @@ ${VEC_TEST} : clean ${_VEC_TEST_OBJS}
 # STACK
 
 ${STACK_FT} : ${STACK_TEST}
+	mv ${STACK_TEST} ${STACK_FT}
 
 ${STACK_STD}: _TEST=-D_NAMESPACE=std
 
 ${STACK_STD}: ${STACK_TEST}
+	mv ${STACK_TEST} ${STACK_STD}
 
 
 # TEST STACK
@@ -127,35 +138,33 @@ ${STACK_STD}: ${STACK_TEST}
 ${STACK_TEST} : clean ${_STACK_TEST_OBJS}
 	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_STACK_TEST_OBJS} -o $@
 
+# SET
 
-# COMMON RULES
-re : fclean all
+${SET_FT} : ${SET_TEST}
+	mv ${SET_TEST} ${SET_FT}
 
+${SET_STD}: _TEST=-D_NAMESPACE=std
+
+${SET_STD}: ${SET_TEST}
+	mv ${SET_TEST} ${SET_STD}
+
+
+# TEST STACK
+# generate stack exectutable
+
+${SET_TEST} : clean ${_SET_TEST_OBJS}
+	${CC} ${CFLAGS} ${_TEST} ${INC} ${CPPSTD} ${_SET_TEST_OBJS} -o $@
 
 # COMMON RULES
 re : fclean all
 
 clean :
-	@echo -n ${BLUE} "clean objs :\t\t" ${RESET}
 	@rm -rf ${OBJDIR}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
 
-fclean : clean tclean lclean
-	@echo -n ${BLUE} "clean binaries:\t" ${RESET}
-	@rm -f  ${NAME} ${TEST_VECTOR} ${VEC_FT} ${VEC_STD}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
+fclean : clean
+	@rm -f  ${NAME} ${TEST_VECTOR} ${VEC_FT} ${VEC_STD} ${TEST_MAP} ${MAP_FT} ${MAP_STD} ${TEST_STACK} ${STACK_FT} ${STACK_STD} ${TEST_SET} ${SET_FT} ${SET_STD}    
 
-tclean : clean
-	@echo -n ${BLUE} "clean tests:\t\t" ${RESET}
-	@rm -rf ${VEC_TEST} ${VEC_FT} ${VEC_STD}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-
-lclean :
-	@echo -n ${BLUE} "clean logs:\t\t" ${RESET}
-	@rm -rf ${LOG_DIR}
-	@echo ${GREEN} "[ DONE ]" ${RESET}
-
-.PHONY : all clean fclean tclean
+.PHONY : all clean fclean
 
 # ADD DEPENDECIES
 -include ${DEPS}

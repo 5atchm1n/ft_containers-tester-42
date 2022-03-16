@@ -57,8 +57,18 @@ namespace _test
     void test_resize(_vector &X, _vector &Y)
     {
         std::cout << "TEST - RESIZE" << std::endl;
-            X.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
-            Y.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+        X.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+        Y.resize(std::rand() % _MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+        try
+        {
+            Y.resize(Y.maxsize() + 1, rdm_val<typename _vector::value_type>())
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << "Error is ok" << '\n';
+        }
+        
+            
     }
 
     template <typename _vector>

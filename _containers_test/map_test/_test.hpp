@@ -9,8 +9,7 @@ namespace _test
     template <typename _map>
     void test_constructors(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - CONSTRUCTORS" << std::endl;
+        std::cout << "TEST - CONSTRUCTORS" << std::endl;
         _map W(X.begin(), X.end());
         _map K(Y.begin(), Y.end());
         test_print(W);
@@ -20,8 +19,7 @@ namespace _test
     template <typename _map>
     void test_copy(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - COPY CONSTRUCTOR" << std::endl;
+        std::cout << "TEST - COPY CONSTRUCTOR" << std::endl;
         _map W(X);
         _map K(Y);
         test_print(W);
@@ -31,8 +29,7 @@ namespace _test
     template <typename _map>
     void test_assign_op(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - OPERATOR=" << std::endl;
+        std::cout << "TEST - OPERATOR=" << std::endl;
         _map W;
         _map K;
         W = X;
@@ -46,8 +43,7 @@ namespace _test
     template <typename _map>
     void test_arrindex_op(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - OPERATOR[]" << std::endl;
+        std::cout << "TEST - OPERATOR[]" << std::endl;
         try
         {
             if (!X.empty())
@@ -63,8 +59,7 @@ namespace _test
     template <typename _map>
     void test_bounds(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - BOUNDS" << std::endl;
+        std::cout << "TEST - BOUNDS" << std::endl;
         try
         {
             typename _map::key_type k;
@@ -110,8 +105,7 @@ namespace _test
     template <typename _map>
     void test_fakeallocator(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - FAKE ALLOCATOR" << std::endl;
+        std::cout << "TEST - FAKE ALLOCATOR" << std::endl;
         try
         {
             if(!Y.empty())
@@ -134,20 +128,20 @@ namespace _test
     template <typename _map>
     void test_other_ops(_map &X, _map &Y)
     {
+        std::cout << "TEST - OTHER OPS" << std::endl;
         if (!X.empty())
-            std::cout << *(X.find(*(X.begin()).first)).second; << std::endl;
+            std::cout << (*(X.find((*(X.begin())).first))).second << std::endl;
         if (!Y.empty())
-            std::cout << *(Y.count(*(X.begin()).first)); << std::endl;
+            std::cout << Y.count((*(X.begin())).first) << std::endl;
     }
      
     template <typename _map>
     void test_insert(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - INSERT" << std::endl;
+        std::cout << "TEST - INSERT" << std::endl;
         try
         {
-            switch (std::rand() % 4)
+            switch (std::rand() % 5)
             {
                 case (0):
                     for (int i = 0; i < std::rand() % _MAX_TEST_SIZE; i++)
@@ -161,9 +155,14 @@ namespace _test
                     break;
                 case (2):
                     if (!Y.empty())
-                        Y.insert(Y.begin(), --(Y.end()));
+                        X.insert(Y.begin(), --(Y.end()));
+                    else
+                        X.insert(_NAMESPACE::make_pair(rdm_val<int>(),rdm_val<std::string>()));
                     if (!X.empty())
-                        X.insert(X.begin(), X.end());
+                        Y.insert(X.begin(), X.end());
+                    else
+                        Y.insert(_NAMESPACE::make_pair(rdm_val<int>(), rdm_val<std::string>()));
+                        
                     break;
                 case (3):
                     if (!Y.empty())
@@ -173,9 +172,20 @@ namespace _test
                         test = it->first;
                         for (int k = 0; k < std::rand() % _MAX_TEST_SIZE; k++)
                         {
-                            _NAMESPACE::pair<typename _map::key_type, typename _map::mapped_type> pr = _NAMESPACE::make_pair(test, rdm_val<typename _map::mapped_type>());
+                            _NAMESPACE::pair<int,std::string> pr = _NAMESPACE::make_pair(test, rdm_val<std::string>());
                             it = Y.insert(it, pr);
                             test++;
+                        }
+                        break;
+                    }
+                case (4):
+                    if (!Y.empty())
+                    {
+                        typename _map::iterator it = Y.begin();
+                        for (int k = 0; k < std::rand() % _MAX_TEST_SIZE; k++)
+                        {
+                            _NAMESPACE::pair<int,std::string> pr = _NAMESPACE::make_pair(rdm_val<int>(), rdm_val<std::string>());
+                            it = Y.insert(it, pr);
                         }
                     }
             }
@@ -190,8 +200,7 @@ namespace _test
     template <typename _map>
     void test_erase(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - ERASE" << std::endl;
+        std::cout << "TEST - ERASE" << std::endl;
         try
         {
             switch (std::rand() % 3)
@@ -233,8 +242,7 @@ namespace _test
     template <typename _map>
     void test_clear(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - CLEAR" << std::endl;
+        std::cout << "TEST - CLEAR" << std::endl;
         try
         {
             switch (std::rand() % 2)
@@ -256,8 +264,7 @@ namespace _test
     template <typename _map>
     void test_swap(_map &X, _map &Y)
     {
-        std::cout << "TEST : " << test_no++;
-        std::cout << " - SWAP" << std::endl;
+        std::cout << "TEST - SWAP" << std::endl;
         switch (std::rand() % 2)
         {
             case (0):
