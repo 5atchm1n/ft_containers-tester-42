@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 22:59:32 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/13 14:42:26 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 03:20:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void)
     #if _TCONST
     
      #if _TVECTOR
-        test_vector<_NAMESPACE::vector<ft::_const_test<int> > >(seed);
+        _test_vector::test_const<_NAMESPACE::vector<ft::_const_test<int> > >(seed);
      #endif
      #if _TMAP    
         test_map<_NAMESPACE::map<ft::_const_test<int>, std::string> >(seed);

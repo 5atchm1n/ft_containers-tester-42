@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bits/_test_header.hpp"
+#include "_test_header.hpp"
 
 template <class _vector>
 void test_vector(int rdm_seed)
@@ -30,7 +30,7 @@ void test_vector(int rdm_seed)
             &_test_vector::test_erase,
             &_test_vector::test_resize,
             &_test_vector::test_swap,
-            &_test_vector::test_clear
+            &_test_vector::test_clear,
         };
 
     _vector X;

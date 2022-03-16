@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 15:46:20 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 16:58:38 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 03:18:03 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,19 @@ class _const_test {
 			return value_type(this->value);
 		}
         
-        _const_test &operator++()
-        {
-            this->value++;
-            return *this;
-        }
-        
-        _const_test operator++(int)
-        {
-            _const_test tmp = *this;
-            this->value++;
-            return tmp;
-        }
-        
 	private:
 		value_type	value;
 };
 
 template <typename T>
 std::ostream	&operator<<(std::ostream &o, _const_test<T> const &tclass)
+{
+    tclass.print(o);
+	return o;
+}
+
+template <typename T>
+std::ostream	&operator<<(std::ostream &o, _const_test<T> &tclass)
 {
     tclass.print(o);
 	return o;
