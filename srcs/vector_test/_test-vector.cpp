@@ -19,7 +19,6 @@ void test_vector(int rdm_seed)
     void (*test_vector[_VECTOR_NTESTS])(_vector &, _vector &) =
         {
             &_test_vector::test_constructors,
-            &_test_vector::test_copy,
             &_test_vector::test_assign_op,
             &_test_vector::test_mixed_assign_copy,
             &_test_vector::test_relational_op,
@@ -48,12 +47,6 @@ void test_vector(int rdm_seed)
                 test_vector[V_BASIC_C](X, Y);
             else
                 test_vector[V_BASIC_C](Y, X);
-            break;
-        case (V_COPY_C):
-            if (std::rand() % 2)
-                test_vector[V_COPY_C](X, Y);
-            else
-                test_vector[V_COPY_C](Y, X);
             break;
         case (V_ASSIGN_OP):
             if (std::rand() % 2)

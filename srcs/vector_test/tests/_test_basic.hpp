@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:07:29 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 03:26:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 03:36:44 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,14 @@ namespace _test_vector
         x = _vector(std::rand() % MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
         y = _vector(x.begin(), x.end());
         _vector z(std::rand() % MAX_TEST_SIZE, rdm_val<typename _vector::value_type>());
+        _test_vector::test_print(x);
+        _test_vector::test_print(y);
         _test_vector::test_print(z);
-    }
-
-    /**
-     * @brief TEST COPY CONSTRUCTOR
-     */
-    template <typename _vector>
-    void test_copy(_vector &x, _vector &y)
-    {
-        std::cout << "TEST : " << vtest_no++;
-        std::cout << " - COPY CONSTRUCTOR" << std::endl;
-        _vector z(x);
+         std::cout << " - COPY CONSTRUCTOR" << std::endl;
+        _vector u(x);
         _vector w(y);
-        _test_vector::test_print(w);
-        _test_vector::test_print(z);
+        _test_vector::test_print(u);
+        _test_vector::test_print(w);       _test_vector::test_print(z);
     }
 
     /**
