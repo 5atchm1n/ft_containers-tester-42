@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/15 02:36:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 02:28:24 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@
 // random number seed
 #define _SEED 42
 // max number of seeds to test
-#define MAX_SEED 8
+#define MAX_SEED 1
 
 // Number of iterations of test suite
-#define _NTESTS 2048
+#define _NTESTS 48
 
-#define MAX_TEST_SIZE 512
-#define MAX_MAP_KEY 1024
+#define MAX_TEST_SIZE 10
+#define MAX_MAP_KEY 256
 
 #include <iostream>
 #include <iomanip>
