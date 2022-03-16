@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:08:25 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/14 16:31:44 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/16 04:25:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,21 @@ rdm_val<ft::pair<const int, std::string> >()
 {
     return ft::pair<const int, std::string>(rdm_val<int>(), rdm_val<std::string>());
 }
+
+template <>
+ft::pair<const ft::_const_test<int>, ft::_const_test<std::string> >
+rdm_val<ft::pair<const ft::_const_test<int>, ft::_const_test<std::string> > >()
+{
+    return ft::pair<const ft::_const_test<int>, std::string>(rdm_val<int>(), rdm_val<std::string>());
+}
+
+template <>
+std::pair<const ft::_const_test<int>, ft::_const_test<std::string> >
+rdm_val<std::pair<const ft::_const_test<int>,ft::_const_test<std::string> > >()
+{
+    return std::pair<const ft::_const_test<int>, std::string>(rdm_val<int>(), rdm_val<std::string>());
+}
+
 #endif
 
 #endif //_TEST_TOOLS_HPP
