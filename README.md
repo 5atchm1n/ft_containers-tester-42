@@ -1,5 +1,6 @@
 # 42 FT_CONTAINERS TESTER
 ## A basic unit test for the 42 containers project
+<sub> Inspired (quite a bit) [monkey_tester](https://github.com/jgiron42/ft_containers_monkey_tester)</sub>
 #### STEP - 1
 Read the README !   
 Compiles using clang++ !!  
