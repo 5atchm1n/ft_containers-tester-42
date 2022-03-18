@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 02:14:31 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 04:30:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/18 14:25:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void test_const(int rdm_seed)
     for (cit = Y.begin(); cit != Y.end(); cit++)
         std::cout << *cit << std::endl;
     for (rcit = Y.rbegin(); rcit != Y.rend(); rcit++)
-        std::cout << *cit << std::endl;
+        std::cout << *rcit << std::endl;
  
     std::cout << "front :" << X.front() << std::endl;
     std::cout << "back :" << X.back() << std::endl;
