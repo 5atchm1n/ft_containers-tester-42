@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 22:59:32 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 04:23:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/18 14:49:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ int main(void)
      #if _TMAP    
         _test_map::test_const<_NAMESPACE::map<ft::_const_test<int>, ft::_const_test<std::string> > >(seed);
      #endif
-     #if _TSTACK
-        test_stack<_NAMESPACE::stack<ft::_const_test<int> > >(seed);
-     #endif
      #if _TSET
-        test_set<_NAMESPACE::set<ft::_const_test<int> > >(seed);
+        _test_set::test_const<_NAMESPACE::set<ft::_const_test<int> >(seed);
      #endif    
     
     #endif

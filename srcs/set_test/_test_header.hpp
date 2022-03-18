@@ -6,14 +6,14 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/12 02:11:07 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/18 14:39:54 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _SET_TEST_HEADER_HPP
 #define _SET_TEST_HEADER_HPP
 
-#include "../../_test_header.hpp"
+#include "../_test_header.hpp"
 
 // Total number of cases
 #define _SET_MAIN 9
@@ -33,8 +33,10 @@ static int set_test_no = 0;
 static int set_main_test_no = 0;
 
 // Tests
-#include "_test_tools.hpp"
-#include "_test_basic.hpp"
-#include "_test_modify.hpp"
+#include "tests/_test_tools.hpp"
+#include "tests/_test_basic.hpp"
+#include "tests/_test_insert.hpp"
+#include "tests/_test_erase.hpp"
+#include "tests/_test_bounds.hpp"
 
 #endif  //_SET_TEST_HEADER_HPP
