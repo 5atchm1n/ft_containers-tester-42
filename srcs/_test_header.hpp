@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 04:29:49 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/19 13:05:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 
 #ifndef _TCONST
 #define _TCONST 0
+#endif
+
+#ifndef _TALLOC
+#define _TALLOC 0
 #endif
 
 

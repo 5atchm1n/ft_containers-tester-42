@@ -30,6 +30,7 @@ void test_vector(int rdm_seed)
             &_test_vector::test_resize,
             &_test_vector::test_swap,
             &_test_vector::test_clear,
+            &_test_vector::test_fakeallocator
         };
 
     _vector X;
@@ -107,6 +108,10 @@ void test_vector(int rdm_seed)
         case (V_CLEAR) :
             test_vector[V_CLEAR](X, Y);
             break;
+        #if _TALLOC
+        case (V_ALLOC):
+            test_vector[V_ALLOC](X, Y);
+        #endif
         }
         _test_vector::test_print(X);
         _test_vector::test_print(Y);
