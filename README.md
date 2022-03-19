@@ -107,11 +107,12 @@ you can enable and disable certain tests at compile time by running the make com
 <li> <b>TMEM</b> - removes -fsanitize=address </li>
 <li> <b>TDEBUG</b> - removes -fstandalone-debug </li>
 <li> <b>TCONST</b> - removes const only tests </li>
+<li> <b>TALLOC</b> - set to 1 to add allocator tests </li>
 <li> <b>LOG</b> - output diff to stdout and file (no seperate logs)</li>
 </ul>
 these variables can be used together ex:
 
-```make <rule_name> TMEM=0 TCONST=0 LOG=0```
+```make <rule_name> TMEM=0 TCONST=0 TALLOC=1```
 
 #### NOTE - to editors
 create a branch and pull request to merge into master !
