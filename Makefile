@@ -74,6 +74,10 @@ ifeq ($(TCONST),0)
 CONST_TEST =
 endif
 
+ifeq ($(TALLOC), 1)
+_TEST += -D_TALLOC=1
+endif
+
 # Main
 _TEST_MAIN = srcs/_test-main.cpp
 

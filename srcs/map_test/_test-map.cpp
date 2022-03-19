@@ -17,7 +17,7 @@ void test_map(int rdm_seed)
 {
     std::srand(rdm_seed);
 
-    void (*_test_main[])(_map &, _map &) =
+    void (*_test_main[M_TEST_MAIN])(_map &, _map &) =
         {
             &_test_map::test_constructors,
             &_test_map::test_operator,
@@ -28,8 +28,8 @@ void test_map(int rdm_seed)
             &_test_map::test_relational_op,
             &_test_map::test_iterators,
             &_test_map::test_swap,
-            &_test_map::test_count
-            //&_test_map::test_fakeallocator
+            &_test_map::test_count,
+            &_test_map::test_fakeallocator
         };
 
     _map X;
@@ -90,8 +90,10 @@ void test_map(int rdm_seed)
                 _test_main[M_COUNT](X, Y);
             else
                 _test_main[M_COUNT](Y, X);
-        //case (M_ALLOC) :
-        //    _test_main[M_ALLOC](X, Y);
+        #if _TALLOC
+        case (M_ALLOC) :
+            _test_main[M_ALLOC](X, Y);
+        #endif
         }
         _test_map::test_print(X);
         _test_map::test_print(Y);
