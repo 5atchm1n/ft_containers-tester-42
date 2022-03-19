@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bits/_test_header.hpp"
+#include "_test_header.hpp"
 
 template <class _set>
 void test_set(int rdm_seed)

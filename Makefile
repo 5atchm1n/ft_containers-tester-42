@@ -5,7 +5,7 @@
 
 ## INCLUDE FILES
 # Global include
-INC = -I./containers
+INC = -I../containers
 
 ## RUN COMPARE TESTS
 TEST_MAP = test_map
