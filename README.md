@@ -1,14 +1,27 @@
 # 42 FT_CONTAINERS TESTER
 <sub> Inspired by [monkey_tester](https://github.com/jgiron42/ft_containers_monkey_tester) by [@jgiron42](https://github.com/jgiron42)</sub>
+
+
 ## A basic unit test for the 42 containers project
 #### STEP - 1
 Read the README !   
 Compiles using clang++ !!  
 Modify the ```$INC``` variable in [Makefile](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/Makefile) to point to your containers.  
-Modify the `#include "pair.hpp"` in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) to point to your ft::pair file  
-<sub>NOTE - *All test variables can be changed in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) file*</sub>  
-<sub>*A full list of the [commands](#COMMANDS) is provided below*</sub>  
-<sub>Tests can be run with or without certain options. ex: -fsanitize=address can be removed. Please check [makefile variables](#VARIABLES) for the details.</sub>
+
+NOTE - Modify the `#include "pair.hpp"` in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) to point to your ft::pair file if you wish to test map.
+
+
+### BASIC
+Just to get you started ! Read the [INDIVIDUAL TESTS](#COMPILING-INDIVIDUAL-TESTS-FOR-DEBUGGING) and [MODIFYING TESTS](#MODIFYING-THE-TESTS) for
+details on how to debug errors or run individual tests.
+
+```make test_[container] ``` to test against std ( *ex:* `make test_vector` )
+
+```make test_all ``` to run all tests at once.
+
+NOTE - *A full list of the [commands](#COMMANDS) is provided below*  
+NOTE - *All test variables can be changed in the [srcs/_test_header.hpp](https://github.com/5atchm1n/ft_containers-tester-42/blob/master/srcs/_test_header.hpp) file*  
+NOTE - *Tests can be run with or without certain options. ex: -fsanitize=address can be removed. Please check [makefile variables](#VARIABLES) for the details.*  
 ## Intro
 Each container can be tested seperately. Tests are split into their respective directories :
 <ul>
