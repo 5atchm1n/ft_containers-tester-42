@@ -6,14 +6,14 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:38:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:35:43 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_test_header.hpp"
 
-#ifndef _SET_TEST_MODIFY_HPP
-#define _SET_TEST_MODIFY_HPP
+#ifndef _SET_TEST_ERASE_HPP
+#define _SET_TEST_ERASE_HPP
 
 namespace _test_set
 {
@@ -28,16 +28,16 @@ namespace _test_set
             switch (std::rand() % 4)
             {
                 case (0) :
-                    std::cout << "case 0" << std::endl;
+                    std::cout << "ERASE : case 0" << std::endl;
                     if (!X.empty())
                     X.erase(X.begin());
                     break ;
                 case (1) :
-                    std::cout << "case 1" << std::endl;
+                    std::cout << "ERASE : case 1" << std::endl;
                     std::cout << "Elements erased : " << X.erase(rdm_val<typename _set::key_type>()) << std::endl;
                     break ;
                 case (2) :
-                    std::cout << "case 2" << std::endl;
+                    std::cout << "ERASE : case 2" << std::endl;
                     if (X.size() > MAX_TEST_SIZE)
                     {
                         it = X.begin();
@@ -47,7 +47,7 @@ namespace _test_set
                     }
                     break ;
                 case (3) :
-                    std::cout << "case 3" << std::endl;
+                    std::cout << "ERASE : case 3" << std::endl;
                     it = Y.begin();
                     if (!Y.empty() && Y.size() > 5)
                     {

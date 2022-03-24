@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:16:13 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/19 13:05:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:26:32 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@
 #include <climits>
 #include <cstddef>
 
+// Modify this to point to your ft::pair file
+#if _TMAP
 #include "pair.hpp"
+#endif
 
 #include "tools/_fake_alloc.hpp"
 #include "tools/_const_class.hpp"

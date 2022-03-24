@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 03:47:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:33:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ namespace _test_map
             switch (std::rand() % 4)
             {
                 case (0) :
-                    std::cout << "case 0" << std::endl;
+                    std::cout << "ERASE : case 0" << std::endl;
                     if (!X.empty())
                     X.erase(X.begin());
                     break ;
                 case (1) :
-                    std::cout << "case 1" << std::endl;
+                    std::cout << "ERASE : case 1" << std::endl;
                     std::cout << "Elements erased : " << X.erase(rdm_val<typename _map::key_type>()) << std::endl;
                     break ;
                 case (2) :
-                    std::cout << "case 2" << std::endl;
+                    std::cout << "ERASE : case 2" << std::endl;
                     if (X.size() > MAX_TEST_SIZE)
                     {
                         it = X.begin();
@@ -46,7 +46,7 @@ namespace _test_map
                     }
                     break ;
                 case (3) :
-                    std::cout << "case 3" << std::endl;
+                    std::cout << "ERASE : case 3" << std::endl;
                     it = Y.begin();
                     if (!Y.empty() && Y.size() > 5)
                     {

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 03:55:13 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:34:09 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void test_bounds(_map &X, _map &Y)
     switch (std::rand() % 2)
     {
         case (0) :
-            std::cout << "case 0" << std::endl;
+            std::cout << "BOUNDS - case 0" << std::endl;
             if (!X.empty())
             {
                 it = X.begin();
@@ -53,7 +53,7 @@ void test_bounds(_map &X, _map &Y)
                 }
             }
         case (1) :
-            std::cout << "case 1" << std::endl;
+            std::cout << "BOUNDS : case 1" << std::endl;
             if (!Y.empty())
             {
                 it = Y.begin();

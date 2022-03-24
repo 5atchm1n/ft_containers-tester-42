@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 02:14:31 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:42:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:41:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ void test_const(int rdm_seed)
 
     std::cout << "X Contains :" << std::endl;
     for (it = X.begin(); it != X.end(); it++)
-        std::cout << it->first << " " << it->second << std::endl;
+        std::cout << *it << std::endl;
     std::cout << "reverse :" << std::endl;
     for (rit = X.rbegin(); rit != X.rend(); rit++)
-        std::cout << rit->first << " " << rit->second << std::endl;
+        std::cout << *rit << std::endl;
     
     std::cout << "CREATE const MAP" << std::endl;
     const _set Y(X.begin(), X.end());
     std::cout << "Const Y Contains :" << std::endl;
     for (cit = Y.begin(); cit != Y.end(); cit++)
-        std::cout << cit->first << " " << cit->second << std::endl;
+        std::cout << *cit << std::endl;
     std::cout << "reverse :" << std::endl;
     for (crit = Y.rbegin(); crit != Y.rend(); crit++)
-        std::cout << crit->first << " " << crit->second << std::endl;
+        std::cout << *crit << std::endl;
  
 }
 

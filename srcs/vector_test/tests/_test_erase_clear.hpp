@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 03:26:51 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:28:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,22 @@ void test_erase(_vector &X, _vector &Y)
     switch (std::rand() % 4)
     {
         case (0) :
+            std::cout << "ERASE : case 0" << std::endl;
             if (!X.empty())
                 X.erase(X.begin());
         case (1) :
+            std::cout << "ERASE : case 1" << std::endl;
             if (!X.empty())
                 X.erase(X.end() - 1);
         case (2) :
+            std::cout << "ERASE : case 2" << std::endl;
             if (!X.empty() && X.size() > 1)
             {   
                 pos = X.begin() + (std::rand() % X.size());
                 X.erase(X.begin(), pos);
             }
         case (3) :
+            std::cout << "ERASE : case 3" << std::endl;
             if (!Y.empty() && Y.size() > 1)
             {
                 pos = Y.begin() + (std::rand() % Y.size());

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 22:59:32 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:49:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:39:54 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(void)
         _test_map::test_const<_NAMESPACE::map<ft::_const_test<int>, ft::_const_test<std::string> > >(seed);
      #endif
      #if _TSET
-        _test_set::test_const<_NAMESPACE::set<ft::_const_test<int> >(seed);
+        _test_set::test_const<_NAMESPACE::set<ft::_const_test<int> > >(seed);
      #endif    
     
     #endif

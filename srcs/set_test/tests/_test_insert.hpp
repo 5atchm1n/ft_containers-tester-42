@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:39:18 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:36:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ namespace _test_set
             switch (std::rand() % 4)
             {
                 case (0):
+                    std::cout << "INSERT : case 0" << std::endl;
                     for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                     {
                         ret = X.insert(rdm_val<typename _set::value_type>());
@@ -46,6 +47,7 @@ namespace _test_set
                     }
                     break;
                 case (1):
+                    std::cout << "INSERT : case 1" << std::endl;
                     if (!X.empty())
                     {
                         ret = X.insert(*(X.begin()));
@@ -61,12 +63,14 @@ namespace _test_set
                     }
                     break;
                 case (2):
+                    std::cout << "INSERT : case 2" << std::endl;
                     if (!Y.empty())
                         X.insert(Y.begin(), --(Y.end()));
                     if (!X.empty())
                         Y.insert(X.begin(), X.end());
                     break;
                 case (3):
+                    std::cout << "INSERT : case 3" << std::endl;
                     if (!Y.empty())
                     {
                         typename _set::key_type test = rdm_val<typename _set::key_type>();
