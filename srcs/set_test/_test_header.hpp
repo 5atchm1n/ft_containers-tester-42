@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:12:15 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:39:54 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:38:19 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ static int set_main_test_no = 0;
 #include "tests/_test_insert.hpp"
 #include "tests/_test_erase.hpp"
 #include "tests/_test_bounds.hpp"
+#include "tests/_test_const.hpp"
 
 #endif  //_SET_TEST_HEADER_HPP

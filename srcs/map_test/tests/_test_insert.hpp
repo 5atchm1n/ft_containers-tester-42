@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 03:47:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:32:10 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void test_insert(_map &X, _map &Y)
         switch (std::rand() % 4)
         {
             case (0):
+                std::cout << "INSERT : case 0" << std::endl;
                 for (int i = 0; i < std::rand() % MAX_TEST_SIZE; i++)
                 {
                     ret = X.insert(rdm_val<typename _map::value_type>());
@@ -47,6 +48,7 @@ void test_insert(_map &X, _map &Y)
                 }
                 break;
             case (1):
+                std::cout << "INSERT : case 1" << std::endl;
                 if (!X.empty())
                 {
                     ret = X.insert(*(X.begin()));
@@ -63,12 +65,14 @@ void test_insert(_map &X, _map &Y)
                 }
                 break;
             case (2):
+                std::cout << "INSERT : case 2" << std::endl;
                 if (!Y.empty())
                     X.insert(Y.begin(), --(Y.end()));
                 if (!X.empty())
                     Y.insert(X.begin(), X.end());
                 break;
             case (3):
+                std::cout << "INSERT : case 3" << std::endl;
                 if (!Y.empty())
                 {
                     typename _map::key_type test;

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/16 02:46:45 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:27:34 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ namespace _test_vector
                 switch (std::rand() % 3)
                 {
                 case (0):
+                    std::cout << "INSERT : case 0" << std::endl;
                     std::cout << *x.insert(it, rdm_val<typename _vector::value_type>()) << std::endl;
                     break;
                 case (1):
+                    std::cout << "INSERT : case 1" << std::endl;
                     if (!x.empty() && !y.empty())
                         y.insert(y.begin() + (std::rand() % y.size()), it, it + (std::rand() % (x.size() - (it - x.begin()))));
                     else if (!y.empty())
@@ -49,6 +51,7 @@ namespace _test_vector
                         y.insert(y.begin(), it, x.end());
                     break;
                 case (2):
+                    std::cout << "INSERT : case 2" << std::endl;
                     if (!y.empty())
                         y.insert(y.begin(), (std::rand() % y.size()), rdm_val<typename _vector::value_type>());
                     else

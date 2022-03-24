@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 15:19:46 by sshakya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:38:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:36:55 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace _test_set
         switch (std::rand() % 2)
         {
             case (0) :
-                std::cout << "case 0" << std::endl;
+                std::cout << "BOUNDS : case 0" << std::endl;
                 if (!X.empty())
                 {
                     it = X.begin();
@@ -53,7 +53,7 @@ namespace _test_set
                     }
                 }
             case (1) :
-                std::cout << "case 1" << std::endl;
+                std::cout << "BOUNDS : case 1" << std::endl;
                 if (!Y.empty())
                 {
                     it = Y.begin();
